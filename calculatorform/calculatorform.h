@@ -67,7 +67,10 @@ public:
 private slots:
     void on_number1_lineEdit_textChanged(const QString &arg1);
     void number2_textChanged (const QString &arg1);
-    void teste ();
+    void pushbutton_1_click();
+    void pushbutton_2_click();
+    void pushbutton_3_click();
+    void pushbutton_4_click();
 
 private:
     Ui::CalculatorForm *ui;

@@ -55,12 +55,17 @@ CalculatorForm::CalculatorForm(QWidget *parent)
     : QWidget(parent), ui(new Ui::CalculatorForm)
 {
     ui->setupUi(this);
-    connect(ui->number2_lineEdit, SIGNAL(textChanged(QString)), this, SLOT(number2_textChanged(QString)));
+    //connect(ui->number2_lineEdit, SIGNAL(textChanged(QString)), this, SLOT(number2_textChanged(QString)));
+
+    connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(pushbutton_1_click()));
+    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(pushbutton_2_click()));
+    connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(pushbutton_3_click()));
+    connect(ui->pushButton_4, SIGNAL(clicked()), this, SLOT(pushbutton_4_click()));
 }
 
 void CalculatorForm::on_number1_lineEdit_textChanged(const QString &arg1)
 {
-    if (ui->opr_lineEdit->text().compare("+") == 0)
+   /* if (ui->opr_lineEdit->text().compare("+") == 0)
     {
          ui->result_lcdNumber->display(QString::number(arg1.toDouble() + ui->number2_lineEdit->text().toDouble()));
     }
@@ -78,12 +83,12 @@ void CalculatorForm::on_number1_lineEdit_textChanged(const QString &arg1)
     else if (ui->opr_lineEdit->text().compare("/") == 0)
     {
         ui->result_lcdNumber->display(QString::number(arg1.toDouble() / ui->number2_lineEdit->text().toDouble()));
-    }
+    }*/
 }
 
 void CalculatorForm::number2_textChanged(const QString &arg1)
 {
-    if (ui->opr_lineEdit->text().compare("+") == 0)
+    /*if (ui->opr_lineEdit->text().compare("+") == 0)
     {
          ui->result_lcdNumber->display(QString::number(arg1.toDouble() + ui->number1_lineEdit->text().toDouble()));
     }
@@ -101,10 +106,28 @@ void CalculatorForm::number2_textChanged(const QString &arg1)
     else if (ui->opr_lineEdit->text().compare("/") == 0)
     {
         ui->result_lcdNumber->display(QString::number(ui->number1_lineEdit->text().toDouble()/arg1.toDouble()));
-    }
+    }*/
 }
 
-void CalculatorForm::teste()
-{
 
+void CalculatorForm::pushbutton_1_click()
+{
+    ui->result_lcdNumber->display(QString::number(ui->number1_lineEdit->text().toDouble()+ui->number2_lineEdit->text().toDouble()));
+}
+
+
+void CalculatorForm::pushbutton_2_click()
+{
+    ui->result_lcdNumber->display(QString::number(ui->number1_lineEdit->text().toDouble()-ui->number2_lineEdit->text().toDouble()));
+}
+
+void CalculatorForm::pushbutton_3_click()
+{
+    ui->result_lcdNumber->display(QString::number(ui->number1_lineEdit->text().toDouble()*ui->number2_lineEdit->text().toDouble()));
+}
+
+
+void CalculatorForm::pushbutton_4_click()
+{
+    ui->result_lcdNumber->display(QString::number(ui->number1_lineEdit->text().toDouble()/ui->number2_lineEdit->text().toDouble()));
 }
