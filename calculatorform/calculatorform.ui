@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>676</width>
-    <height>79</height>
+    <width>432</width>
+    <height>138</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,62 +19,146 @@
   <property name="windowTitle">
    <string>Calculator Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="4">
-    <widget class="QLabel" name="label_2_">
-     <property name="text">
-      <string>Resutado da Operação</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="opr_lineEdit"/>
-   </item>
-   <item row="1" column="3">
-    <widget class="QLabel" name="label_3_2">
-     <property name="text">
-      <string>=</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Primeiro Número</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Segundo Número</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Operação</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLineEdit" name="number1_lineEdit"/>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLineEdit" name="number2_lineEdit"/>
-   </item>
-   <item row="1" column="4">
-    <widget class="QLCDNumber" name="result_lcdNumber">
-     <property name="segmentStyle">
-      <enum>QLCDNumber::Flat</enum>
-     </property>
-    </widget>
-   </item>
-  </layout>
+  <widget class="QLabel" name="label_2_">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>10</y>
+     <width>155</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Resutado da Operação</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="opr_lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>30</y>
+     <width>121</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3_2">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>30</y>
+     <width>16</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>=</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>118</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Primeiro Número</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>10</y>
+     <width>119</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Segundo Número</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="number1_lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>121</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="result_lcdNumber">
+   <property name="geometry">
+    <rect>
+     <x>275</x>
+     <y>30</y>
+     <width>150</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="segmentStyle">
+    <enum>QLCDNumber::Flat</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>120</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>+</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>120</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>x</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>70</y>
+     <width>120</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>120</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>/</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
