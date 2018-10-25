@@ -7,17 +7,15 @@
 #include "QDebug"
 
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(add_aluno()));    
-    connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(busca_aluno()));
+    connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(busca_aluno_por_matricula()));
 
     DbManager *dbm = new DbManager("D:/banco de dados/fitnessUfba.db");
-
     model = new QSqlQueryModel(this);
     model->setQuery(dbm->listarAlunos(),dbm->m_db);
     proxyModel = new QSortFilterProxyModel(this);
@@ -39,7 +37,7 @@ void MainWindow::add_aluno()
     tela2->show();
 }
 
-void MainWindow::busca_aluno()
+void MainWindow::busca_aluno_por_matricula()
 {
     DbManager *dbm = new DbManager("D:/banco de dados/fitnessUfba.db");
     Aluno Pesquisa = dbm->busca_aluno(ui->lineEdit->text());
@@ -48,7 +46,9 @@ void MainWindow::busca_aluno()
     {
         AddAluno *tela2 = new AddAluno(NULL, &Pesquisa);
         tela2->setWindowTitle("Consultando aluno");
-        tela2->show();
+        tela2->show();    
     }
+
+    dbm->m_db.close();
 }
 

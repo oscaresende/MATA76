@@ -20,7 +20,7 @@ public:
 
 private slots:
     void add_aluno();
-    void busca_aluno();
+    void busca_aluno_por_matricula();
 
 private:
     Ui::MainWindow *ui;

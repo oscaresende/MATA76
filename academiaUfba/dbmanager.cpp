@@ -39,7 +39,8 @@ Aluno DbManager::busca_aluno(const QString& matricula)
                            query.value(rec.indexOf("EMAIL")).toString(),
                            query.value(rec.indexOf("DATA_NASCIMENTO")).toDateTime(),
                            query.value(rec.indexOf("CPF")).toString(),
-                           query.value(rec.indexOf("TELEFONE")).toString());
+                           query.value(rec.indexOf("TELEFONE")).toString(),
+                           query.value(rec.indexOf("IMAGEM")).toByteArray());
          return *aluno;
    }
 
@@ -64,7 +65,8 @@ bool DbManager::addAluno(const Aluno& aluno)
                  "                                 EMAIL VARCHAR(50),"
                  "                                 DATA_NASCIMENTO DATETIME,"
                  "                                 CPF VARCHAR(12),"
-                 "                                 TELEFONE VARCHAR(15))"))
+                 "                                 TELEFONE VARCHAR(15),"
+                 "                                 IMAGEM BLOB)"))
    {
        success = true;
        qDebug() << "deu certo o create table";
@@ -76,8 +78,8 @@ bool DbManager::addAluno(const Aluno& aluno)
    }
 
    query.clear();
-   query.prepare("INSERT INTO ALUNO(MATRICULA, NOME,ENDERECO,EMAIL,DATA_NASCIMENTO,CPF,TELEFONE) "
-                 "VALUES (:MATRICULA,:NOME, :ENDERECO, :EMAIL, :DATA_NASCIMENTO, :CPF, :TELEFONE)");
+   query.prepare("INSERT INTO ALUNO(MATRICULA, NOME,ENDERECO,EMAIL,DATA_NASCIMENTO,CPF,TELEFONE, IMAGEM) "
+                 "VALUES (:MATRICULA,:NOME, :ENDERECO, :EMAIL, :DATA_NASCIMENTO, :CPF, :TELEFONE, :IMAGEM)");
    query.bindValue(":MATRICULA", aluno.matricula);
    query.bindValue(":NOME", aluno.nome);
    query.bindValue(":ENDERECO", aluno.endereco);
@@ -85,6 +87,9 @@ bool DbManager::addAluno(const Aluno& aluno)
    query.bindValue(":DATA_NASCIMENTO", aluno.data_nascimento);
    query.bindValue(":CPF", aluno.cpf);
    query.bindValue(":TELEFONE", aluno.telefone);
+   query.bindValue(":IMAGEM", aluno.imagem);
+
+
 
    if(query.exec())
    {

@@ -18,9 +18,11 @@ public:
 private slots:
     void cadastrar();
     void cancelar();
+    void escolher_arquivo();
 
 private:
     Ui::AddAluno *ui;        
+    QImage imageFile;
 };
 
 #endif // ADDALUNO_H

@@ -15,6 +15,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QToolButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -38,12 +39,14 @@ public:
     QPushButton *pushButton_2;
     QLabel *label_7;
     QLineEdit *lineEdit_7;
+    QToolButton *toolButton;
+    QLabel *image_label;
 
     void setupUi(QWidget *AddAluno)
     {
         if (AddAluno->objectName().isEmpty())
             AddAluno->setObjectName(QStringLiteral("AddAluno"));
-        AddAluno->resize(400, 300);
+        AddAluno->resize(592, 300);
         label = new QLabel(AddAluno);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 59, 91, 16));
@@ -82,16 +85,22 @@ public:
         dateEdit->setGeometry(QRect(120, 142, 110, 22));
         pushButton = new QPushButton(AddAluno);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(230, 267, 75, 23));
+        pushButton->setGeometry(QRect(290, 270, 75, 23));
         pushButton_2 = new QPushButton(AddAluno);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(100, 267, 75, 23));
+        pushButton_2->setGeometry(QRect(200, 270, 75, 23));
         label_7 = new QLabel(AddAluno);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setGeometry(QRect(20, 20, 91, 16));
         lineEdit_7 = new QLineEdit(AddAluno);
         lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
         lineEdit_7->setGeometry(QRect(120, 20, 81, 20));
+        toolButton = new QToolButton(AddAluno);
+        toolButton->setObjectName(QStringLiteral("toolButton"));
+        toolButton->setGeometry(QRect(560, 230, 27, 22));
+        image_label = new QLabel(AddAluno);
+        image_label->setObjectName(QStringLiteral("image_label"));
+        image_label->setGeometry(QRect(390, 56, 191, 161));
 
         retranslateUi(AddAluno);
 
@@ -110,6 +119,8 @@ public:
         pushButton->setText(QApplication::translate("AddAluno", "Cancelar", nullptr));
         pushButton_2->setText(QApplication::translate("AddAluno", "Cadastrar", nullptr));
         label_7->setText(QApplication::translate("AddAluno", "Matricula", nullptr));
+        toolButton->setText(QApplication::translate("AddAluno", "...", nullptr));
+        image_label->setText(QString());
     } // retranslateUi
 
 };
