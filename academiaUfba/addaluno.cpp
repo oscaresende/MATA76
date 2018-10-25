@@ -5,13 +5,25 @@
 #include "QMessageBox"
 
 
-AddAluno::AddAluno(QWidget *parent) :
+AddAluno::AddAluno(QWidget *parent, Aluno *aluno) :
     QWidget(parent),
     ui(new Ui::AddAluno)
 {
     ui->setupUi(this);
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
+
+    if (aluno != NULL)
+    {
+        ui->lineEdit_7->setText(aluno->matricula);
+        ui->lineEdit->setText(aluno->nome);
+        ui->lineEdit_2->setText(aluno->endereco);
+        ui->lineEdit_3->setText(aluno->telefone);
+        ui->lineEdit_5->setText(aluno->email);
+        ui->lineEdit_6->setText(aluno->cpf);
+        ui->dateEdit->setDateTime(aluno->data_nascimento);
+        ui->pushButton_2->setEnabled(false);
+    }
 }
 
 AddAluno::~AddAluno()
@@ -26,7 +38,7 @@ void AddAluno::cadastrar()
     QMessageBox mensagem;
     mensagem.setWindowTitle("Alerta");
 
-    if (ui->lineEdit_7->text() == "")
+    if ((ui->lineEdit_7->text() == "") ||(ui->lineEdit->text() == ""))
     {
         mensagem.setText("Dados Incompletos!");
         mensagem.exec();

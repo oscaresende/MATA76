@@ -1,6 +1,6 @@
 #include "dbmanager.h"
 #include "QDebug"
-
+#include "QSqlRecord"
 
 DbManager::DbManager(const QString& path)
 {
@@ -22,6 +22,32 @@ QString DbManager::listarAlunos()
    QString retorno = "SELECT MATRICULA, NOME, ENDERECO, EMAIL, TELEFONE FROM ALUNO";
    return retorno;
 }
+
+Aluno DbManager::busca_aluno(const QString& matricula)
+{
+   QString consulta = "SELECT * FROM ALUNO WHERE MATRICULA = " + matricula;
+   QSqlQuery query(consulta);
+   QSqlRecord rec = query.record();
+
+   Aluno *aluno;
+
+   while (query.next())
+   {
+         aluno = new Aluno(query.value(rec.indexOf("MATRICULA")).toString(),
+                           query.value(rec.indexOf("NOME")).toString(),
+                           query.value(rec.indexOf("ENDERECO")).toString(),
+                           query.value(rec.indexOf("EMAIL")).toString(),
+                           query.value(rec.indexOf("DATA_NASCIMENTO")).toDateTime(),
+                           query.value(rec.indexOf("CPF")).toString(),
+                           query.value(rec.indexOf("TELEFONE")).toString());
+         return *aluno;
+   }
+
+   aluno = new Aluno();
+
+   return *aluno;
+}
+
 
 
 bool DbManager::addAluno(const Aluno& aluno)

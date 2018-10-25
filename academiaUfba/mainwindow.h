@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSqlQueryModel>
 #include <QSortFilterProxyModel>
+#include "dbmanager.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,11 +20,13 @@ public:
 
 private slots:
     void add_aluno();
+    void busca_aluno();
 
 private:
     Ui::MainWindow *ui;
     QSqlQueryModel *model;
     QSortFilterProxyModel *proxyModel;
+
 };
 
 #endif // MAINWINDOW_H

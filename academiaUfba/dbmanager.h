@@ -12,6 +12,7 @@ class DbManager
 public:
     DbManager(const QString& path);
     bool addAluno(const Aluno& aluno);
+    Aluno busca_aluno(const QString& matricula);
     QString listarAlunos();
     QSqlDatabase m_db;
 private:

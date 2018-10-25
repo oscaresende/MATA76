@@ -11,7 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -28,6 +31,10 @@ public:
     QWidget *centralWidget;
     QPushButton *pushButton;
     QTableView *tableView;
+    QGroupBox *groupBox;
+    QLineEdit *lineEdit;
+    QLabel *label;
+    QPushButton *pushButton_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -45,6 +52,18 @@ public:
         tableView = new QTableView(centralWidget);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setGeometry(QRect(10, 60, 861, 221));
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setGeometry(QRect(10, 320, 181, 131));
+        lineEdit = new QLineEdit(groupBox);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(10, 47, 113, 22));
+        label = new QLabel(groupBox);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 30, 55, 16));
+        pushButton_2 = new QPushButton(groupBox);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(130, 47, 41, 21));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -66,6 +85,9 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fitness UFBA", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "Add Aluno", nullptr));
+        groupBox->setTitle(QApplication::translate("MainWindow", "Pesquisar Aluno", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Matricula", nullptr));
+        pushButton_2->setText(QApplication::translate("MainWindow", "OK", nullptr));
     } // retranslateUi
 
 };

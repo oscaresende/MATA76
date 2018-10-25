@@ -4,6 +4,7 @@
 #include "aluno.h"
 #include "dbmanager.h"
 #include "QString"
+#include "QDebug"
 
 
 
@@ -13,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(add_aluno()));    
+    connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(busca_aluno()));
 
     DbManager *dbm = new DbManager("D:/banco de dados/fitnessUfba.db");
 
@@ -36,3 +38,17 @@ void MainWindow::add_aluno()
     tela2->setWindowTitle("Adicionar Aluno");
     tela2->show();
 }
+
+void MainWindow::busca_aluno()
+{
+    DbManager *dbm = new DbManager("D:/banco de dados/fitnessUfba.db");
+    Aluno Pesquisa = dbm->busca_aluno(ui->lineEdit->text());
+
+    if(Pesquisa.matricula!="")
+    {
+        AddAluno *tela2 = new AddAluno(NULL, &Pesquisa);
+        tela2->setWindowTitle("Consultando aluno");
+        tela2->show();
+    }
+}
+
