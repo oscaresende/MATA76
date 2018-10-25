@@ -29,12 +29,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     addaluno.cpp \
-    dbmanager.cpp
+    dbmanager.cpp \
+    aluno.cpp
 
 HEADERS += \
         mainwindow.h \
     addaluno.h \
-    dbmanager.h
+    dbmanager.h \
+    aluno.h
 
 FORMS += \
         mainwindow.ui \

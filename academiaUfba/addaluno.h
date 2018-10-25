@@ -16,9 +16,10 @@ public:
     ~AddAluno();
 private slots:
     void cadastrar();
+    void cancelar();
 
 private:
-    Ui::AddAluno *ui;
+    Ui::AddAluno *ui;        
 };
 
 #endif // ADDALUNO_H

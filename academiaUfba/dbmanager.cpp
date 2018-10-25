@@ -17,25 +17,57 @@ DbManager::DbManager(const QString& path)
    }
 }
 
-bool DbManager::addAluno(const QString& name)
+QString DbManager::listarAlunos()
+{
+   QString retorno = "SELECT MATRICULA, NOME, ENDERECO, EMAIL, TELEFONE FROM ALUNO";
+   return retorno;
+}
+
+
+bool DbManager::addAluno(const Aluno& aluno)
 {
    bool success = false;
    // you should check if args are ok first...
    QSqlQuery query;
 
-   query.exec("CREATE TABLE IF NOT EXISTS Aluno(nome VARCHAR(100))");
-   query.clear();
-
-   query.prepare("INSERT INTO Aluno(nome) VALUES (:nome)");
-   query.bindValue(":nome", name);
-   if(query.exec())
+   if(query.exec("CREATE TABLE IF NOT EXISTS "
+                 "                           ALUNO(ID_ALUNO INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                 "                                 MATRICULA VARHCAR(6), "
+                 "                                 NOME VARCHAR(100),"
+                 "                                 ENDERECO VARCHAR(100),"
+                 "                                 EMAIL VARCHAR(50),"
+                 "                                 DATA_NASCIMENTO DATETIME,"
+                 "                                 CPF VARCHAR(12),"
+                 "                                 TELEFONE VARCHAR(15))"))
    {
        success = true;
-       qDebug() << "deu certo";
+       qDebug() << "deu certo o create table";
    }
    else
    {
-        qDebug() << "deu errado";
+       success = false;
+       qDebug() << "deu errado o create table";
+   }
+
+   query.clear();
+   query.prepare("INSERT INTO ALUNO(MATRICULA, NOME,ENDERECO,EMAIL,DATA_NASCIMENTO,CPF,TELEFONE) "
+                 "VALUES (:MATRICULA,:NOME, :ENDERECO, :EMAIL, :DATA_NASCIMENTO, :CPF, :TELEFONE)");
+   query.bindValue(":MATRICULA", aluno.matricula);
+   query.bindValue(":NOME", aluno.nome);
+   query.bindValue(":ENDERECO", aluno.endereco);
+   query.bindValue(":EMAIL", aluno.email);
+   query.bindValue(":DATA_NASCIMENTO", aluno.data_nascimento);
+   query.bindValue(":CPF", aluno.cpf);
+   query.bindValue(":TELEFONE", aluno.telefone);
+
+   if(query.exec())
+   {
+       success = true;
+       qDebug() << "deu certo inserir";
+   }
+   else
+   {
+        qDebug() << "deu errado inserir";
                  //<< query.lastError();
    }
 

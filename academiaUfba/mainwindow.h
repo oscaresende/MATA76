@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSqlQueryModel>
+#include <QSortFilterProxyModel>
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +22,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QSqlQueryModel *model;
+    QSortFilterProxyModel *proxyModel;
 };
 
 #endif // MAINWINDOW_H
