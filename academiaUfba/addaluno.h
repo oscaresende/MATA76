@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "aluno.h"
+#include "dbmanager.h"
 
 namespace Ui {
 class AddAluno;
@@ -23,6 +24,8 @@ private slots:
 private:
     Ui::AddAluno *ui;        
     QImage imageFile;
+    DbManager *db;
+
 };
 
 #endif // ADDALUNO_H

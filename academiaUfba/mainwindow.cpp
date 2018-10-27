@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(add_aluno()));    
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(busca_aluno_por_matricula()));
 
-    DbManager *dbm = new DbManager("D:/banco de dados/fitnessUfba.db");
+    DbManager *dbm = new DbManager("fitnessUfba");
     model = new QSqlQueryModel(this);
     model->setQuery(dbm->listarAlunos(),dbm->m_db);
     proxyModel = new QSortFilterProxyModel(this);
@@ -39,7 +39,7 @@ void MainWindow::add_aluno()
 
 void MainWindow::busca_aluno_por_matricula()
 {
-    DbManager *dbm = new DbManager("D:/banco de dados/fitnessUfba.db");
+    DbManager *dbm = new DbManager("fitnessUfba");
     Aluno Pesquisa = dbm->busca_aluno(ui->lineEdit->text());
 
     if(Pesquisa.matricula!="")
