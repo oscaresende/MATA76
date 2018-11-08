@@ -23,6 +23,12 @@ QString DbManager::listarAlunos()
    return retorno;
 }
 
+QString DbManager::listarProfessores()
+{
+   QString retorno = "SELECT MATRICULA, NOME, ENDERECO, EMAIL, TELEFONE FROM PROFESSOR";
+   return retorno;
+}
+
 Aluno DbManager::busca_aluno(const QString& matricula)
 {
    QString consulta = "SELECT * FROM ALUNO WHERE MATRICULA = " + matricula;
@@ -49,6 +55,32 @@ Aluno DbManager::busca_aluno(const QString& matricula)
    return *aluno;
 }
 
+
+Professor DbManager::busca_professor(const QString& matricula)
+{
+   QString consulta = "SELECT * FROM PROFESSOR WHERE MATRICULA = " + matricula;
+   QSqlQuery query(consulta);
+   QSqlRecord rec = query.record();
+
+   Professor *professor;
+
+   while (query.next())
+   {
+         professor = new Professor(query.value(rec.indexOf("MATRICULA")).toString(),
+                           query.value(rec.indexOf("NOME")).toString(),
+                           query.value(rec.indexOf("ENDERECO")).toString(),
+                           query.value(rec.indexOf("EMAIL")).toString(),
+                           query.value(rec.indexOf("DATA_NASCIMENTO")).toDateTime(),
+                           query.value(rec.indexOf("CPF")).toString(),
+                           query.value(rec.indexOf("TELEFONE")).toString(),
+                           query.value(rec.indexOf("IMAGEM")).toByteArray());
+         return *professor;
+   }
+
+   professor = new Professor();
+
+   return *professor;
+}
 
 
 bool DbManager::addAluno(const Aluno& aluno)
@@ -88,6 +120,61 @@ bool DbManager::addAluno(const Aluno& aluno)
    query.bindValue(":CPF", aluno.cpf);
    query.bindValue(":TELEFONE", aluno.telefone);
    query.bindValue(":IMAGEM", aluno.imagem);
+
+
+
+   if(query.exec())
+   {
+       success = true;
+       qDebug() << "deu certo inserir";
+   }
+   else
+   {
+        qDebug() << "deu errado inserir";
+                 //<< query.lastError();
+   }
+
+   return success;
+}
+
+
+bool DbManager::addProfessor(const Professor& professor)
+{
+   bool success = false;
+   // you should check if args are ok first...
+   QSqlQuery query;
+
+   if(query.exec("CREATE TABLE IF NOT EXISTS "
+                 "                           PROFESSOR(ID_ALUNO INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                 "                                 MATRICULA VARHCAR(6), "
+                 "                                 NOME VARCHAR(100),"
+                 "                                 ENDERECO VARCHAR(100),"
+                 "                                 EMAIL VARCHAR(50),"
+                 "                                 DATA_NASCIMENTO DATETIME,"
+                 "                                 CPF VARCHAR(12),"
+                 "                                 TELEFONE VARCHAR(15),"
+                 "                                 IMAGEM BLOB)"))
+   {
+       success = true;
+       qDebug() << "deu certo o create table";
+   }
+   else
+   {
+       success = false;
+       qDebug() << "deu errado o create table";
+   }
+
+   query.clear();
+   query.prepare("INSERT INTO PROFESSOR(MATRICULA, NOME,ENDERECO,EMAIL,DATA_NASCIMENTO,CPF,TELEFONE, IMAGEM) "
+                 "VALUES (:MATRICULA,:NOME, :ENDERECO, :EMAIL, :DATA_NASCIMENTO, :CPF, :TELEFONE, :IMAGEM)");
+   query.bindValue(":MATRICULA", professor.matricula);
+   query.bindValue(":NOME", professor.nome);
+   query.bindValue(":ENDERECO", professor.endereco);
+   query.bindValue(":EMAIL", professor.email);
+   query.bindValue(":DATA_NASCIMENTO", professor.data_nascimento);
+   query.bindValue(":CPF", professor.cpf);
+   query.bindValue(":TELEFONE", professor.telefone);
+   query.bindValue(":IMAGEM", professor.imagem);
 
 
 

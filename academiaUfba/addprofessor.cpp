@@ -1,14 +1,14 @@
-#include "addaluno.h"
-#include "ui_addaluno.h"
+#include "addprofessor.h"
+#include "ui_addprofessor.h"
 #include "dbmanager.h"
-#include "aluno.h"
+#include "professor.h"
 #include "QMessageBox"
 #include "QFileDialog"
 
 
-AddAluno::AddAluno(QWidget *parent, Aluno *aluno) :
+AddProfessor::AddProfessor(QWidget *parent, Professor *professor) :
     QWidget(parent),
-    ui(new Ui::AddAluno)
+    ui(new Ui::AddProfessor)
 {
     ui->setupUi(this);
 
@@ -22,30 +22,30 @@ AddAluno::AddAluno(QWidget *parent, Aluno *aluno) :
 
 
 
-    if (aluno != NULL)
+    if (professor != NULL)
     {
-        ui->lineEdit_7->setText(aluno->matricula);
-        ui->lineEdit->setText(aluno->nome);
-        ui->lineEdit_2->setText(aluno->endereco);
-        ui->lineEdit_3->setText(aluno->telefone);
-        ui->lineEdit_5->setText(aluno->email);
-        ui->lineEdit_6->setText(aluno->cpf);
-        ui->dateEdit->setDateTime(aluno->data_nascimento);
+        ui->lineEdit_7->setText(professor->matricula);
+        ui->lineEdit->setText(professor->nome);
+        ui->lineEdit_2->setText(professor->endereco);
+        ui->lineEdit_3->setText(professor->telefone);
+        ui->lineEdit_5->setText(professor->email);
+        ui->lineEdit_6->setText(professor->cpf);
+        ui->dateEdit->setDateTime(professor->data_nascimento);
         ui->pushButton_2->setEnabled(false);
 
-        imageFile.loadFromData(aluno->imagem, "JPEG");
+        imageFile.loadFromData(professor->imagem, "JPEG");
         ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
                                                                         ui->image_label->height(),
                                                                         Qt::KeepAspectRatioByExpanding));
     }
 }
 
-AddAluno::~AddAluno()
+AddProfessor::~AddProfessor()
 {
     delete ui;
 }
 
-void AddAluno::cadastrar()
+void AddProfessor::cadastrar()
 {
     bool erro;
     erro = false;
@@ -82,7 +82,7 @@ void AddAluno::cadastrar()
     }
 }
 
-void AddAluno::escolher_arquivo()
+void AddProfessor::escolher_arquivo()
 {
     QString imagePath = QFileDialog::getOpenFileName(this, "Open", "/home",
                                                      "*.png *.jpg *.jpeg");
@@ -92,8 +92,7 @@ void AddAluno::escolher_arquivo()
                                                                     Qt::KeepAspectRatioByExpanding));
 }
 
-void AddAluno::cancelar()
+void AddProfessor::cancelar()
 {
     this->close();
 }
-

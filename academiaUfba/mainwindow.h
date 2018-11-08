@@ -5,6 +5,9 @@
 #include <QSqlQueryModel>
 #include <QSortFilterProxyModel>
 #include "dbmanager.h"
+#include "addaluno.h"
+#include "addprofessor.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -22,11 +25,18 @@ private slots:
     void add_aluno();
     void busca_aluno_por_matricula();
 
+    void add_professor();
+    void busca_professor_por_matricula();
+
+
+
 private:
     Ui::MainWindow *ui;
     QSqlQueryModel *model;
     QSortFilterProxyModel *proxyModel;
 
+    AddAluno *addInstAluno;
+    AddProfessor *addInstProfessor;
 };
 
 #endif // MAINWINDOW_H
