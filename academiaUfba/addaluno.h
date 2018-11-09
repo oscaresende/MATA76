@@ -24,6 +24,7 @@ private slots:
 private:
     Ui::AddAluno *ui;        
     QImage imageFile;
+    QString imagePath;
     DbManager *db;
 
 };

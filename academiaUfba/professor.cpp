@@ -6,7 +6,7 @@ Professor::Professor()
 }
 
 Professor::Professor(const QString& matricula, const QString& name, const QString& endereco, const QString& email,
-             const QDateTime& data_nascimento, const QString& cpf, const QString& telefone, const QByteArray & imagem)
+             const QDateTime& data_nascimento, const QString& cpf, const QString& telefone, const QString& imagem)
 {
     Professor::id=NULL;
     Professor::matricula=matricula;

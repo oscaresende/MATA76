@@ -46,7 +46,7 @@ Aluno DbManager::busca_aluno(const QString& matricula)
                            query.value(rec.indexOf("DATA_NASCIMENTO")).toDateTime(),
                            query.value(rec.indexOf("CPF")).toString(),
                            query.value(rec.indexOf("TELEFONE")).toString(),
-                           query.value(rec.indexOf("IMAGEM")).toByteArray());
+                           query.value(rec.indexOf("IMAGEM")).toString());
          return *aluno;
    }
 
@@ -73,7 +73,7 @@ Professor DbManager::busca_professor(const QString& matricula)
                            query.value(rec.indexOf("DATA_NASCIMENTO")).toDateTime(),
                            query.value(rec.indexOf("CPF")).toString(),
                            query.value(rec.indexOf("TELEFONE")).toString(),
-                           query.value(rec.indexOf("IMAGEM")).toByteArray());
+                           query.value(rec.indexOf("IMAGEM")).toString());
          return *professor;
    }
 
@@ -98,7 +98,7 @@ bool DbManager::addAluno(const Aluno& aluno)
                  "                                 DATA_NASCIMENTO DATETIME,"
                  "                                 CPF VARCHAR(12),"
                  "                                 TELEFONE VARCHAR(15),"
-                 "                                 IMAGEM BLOB)"))
+                 "                                 IMAGEM VARCHAR(250))"))
    {
        success = true;
        qDebug() << "deu certo o create table";
@@ -153,7 +153,7 @@ bool DbManager::addProfessor(const Professor& professor)
                  "                                 DATA_NASCIMENTO DATETIME,"
                  "                                 CPF VARCHAR(12),"
                  "                                 TELEFONE VARCHAR(15),"
-                 "                                 IMAGEM BLOB)"))
+                 "                                 IMAGEM VARCHAR(200))"))
    {
        success = true;
        qDebug() << "deu certo o create table";

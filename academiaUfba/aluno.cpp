@@ -6,7 +6,7 @@ Aluno::Aluno()
 }
 
 Aluno::Aluno(const QString& matricula, const QString& name, const QString& endereco, const QString& email,
-             const QDateTime& data_nascimento, const QString& cpf, const QString& telefone, const QByteArray & imagem)
+             const QDateTime& data_nascimento, const QString& cpf, const QString& telefone, const QString & imagem)
 {
     Aluno::id=NULL;
     Aluno::matricula=matricula;

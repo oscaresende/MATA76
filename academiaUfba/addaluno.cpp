@@ -17,7 +17,7 @@ AddAluno::AddAluno(QWidget *parent, Aluno *aluno) :
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
     connect(ui->toolButton, SIGNAL(clicked()),this, SLOT(escolher_arquivo()));
-    connect(ui->toolButton, SIGNAL(clicked()),this, SLOT(escolher_arquivo()));
+
 
 
 
@@ -33,7 +33,7 @@ AddAluno::AddAluno(QWidget *parent, Aluno *aluno) :
         ui->dateEdit->setDateTime(aluno->data_nascimento);
         ui->pushButton_2->setEnabled(false);
 
-        imageFile.loadFromData(aluno->imagem, "JPEG");
+        imageFile.load(aluno->imagem);
         ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
                                                                         ui->image_label->height(),
                                                                         Qt::KeepAspectRatioByExpanding));
@@ -63,10 +63,10 @@ void AddAluno::cadastrar()
     {
         DbManager *manager = new DbManager("fitnessUfba");
 
-        QByteArray compressed = qCompress(imageFile.bits(), imageFile.byteCount());
+        //QByteArray compressed = qCompress(imageFile.bits(), imageFile.byteCount());
 
         Aluno *novo = new Aluno(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
-                                ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), compressed);
+                                ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
 
         if(manager->addAluno(*novo))
         {
@@ -84,9 +84,9 @@ void AddAluno::cadastrar()
 
 void AddAluno::escolher_arquivo()
 {
-    QString imagePath = QFileDialog::getOpenFileName(this, "Open", "/home",
+    this->imagePath = QFileDialog::getOpenFileName(this, "Open", "/home",
                                                      "*.png *.jpg *.jpeg");
-    if (imagePath!= "") imageFile.load(imagePath);
+    if (this->imagePath!= "") imageFile.load(this->imagePath);
     ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
                                                                     ui->image_label->height(),
                                                                     Qt::KeepAspectRatioByExpanding));

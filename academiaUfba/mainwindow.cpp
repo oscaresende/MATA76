@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "addaluno.h"
-#include "addprofessor.h"
+#include "addpro.h"
 #include "aluno.h"
 #include "professor.h"
 #include "dbmanager.h"
@@ -14,11 +14,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(add_aluno()));    
+
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(busca_aluno_por_matricula()));
+    connect(ui->pushButton_3, SIGNAL(clicked()),this, SLOT(busca_professor_por_matricula()));
 
     addInstAluno = new AddAluno();
     connect(ui->actionNovo_aluno,SIGNAL(triggered()),addInstAluno, SLOT(show()));
+
+    addInstProfessor = new addpro();
+    connect(ui->actionNovo_Professor,SIGNAL(triggered()),addInstProfessor, SLOT(show()));
 
     DbManager *dbm = new DbManager("fitnessUfba");
 
@@ -61,11 +65,11 @@ void MainWindow::busca_aluno_por_matricula()
 void MainWindow::busca_professor_por_matricula()
 {
     DbManager *dbm = new DbManager("fitnessUfba");
-    Professor Pesquisa = dbm->busca_professor(ui->lineEdit->text());
+    Professor Pesquisa = dbm->busca_professor(ui->lineEdit_2->text());
 
     if(Pesquisa.matricula!="")
     {
-        AddProfessor *tela2 = new AddProfessor(NULL, &Pesquisa);
+        addpro *tela2 = new addpro(NULL, &Pesquisa);
         tela2->setWindowTitle("Consultando professor");
         tela2->show();
     }

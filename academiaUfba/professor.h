@@ -8,7 +8,7 @@ class Professor
 public:
     Professor();
     Professor(const QString& matricula, const QString& name, const QString& endereco, const QString& email,
-          const QDateTime& data_nascimento, const QString& cpf, const QString& telefone, const QByteArray & imagem);
+          const QDateTime& data_nascimento, const QString& cpf, const QString& telefone, const QString & imagem);
     int id;
     QString matricula;
     QString nome;
@@ -17,7 +17,7 @@ public:
     QString cpf;
     QString telefone;
     QDateTime data_nascimento;
-    QByteArray imagem;
+    QString imagem;
 };
 
 #endif // ALUNO_H
