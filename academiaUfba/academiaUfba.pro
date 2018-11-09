@@ -32,7 +32,11 @@ SOURCES += \
     dbmanager.cpp \
     aluno.cpp \
     professor.cpp \
-    addpro.cpp
+    addpro.cpp \
+    exercicio.cpp \
+    addexercicio.cpp \
+    treino.cpp \
+    addtreino.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,12 +44,18 @@ HEADERS += \
     dbmanager.h \
     aluno.h \
     professor.h \
-    addpro.h
+    addpro.h \
+    exercicio.h \
+    addexercicio.h \
+    treino.h \
+    addtreino.h
 
 FORMS += \
         mainwindow.ui \
     addaluno.ui \
-    addpro.ui
+    addpro.ui \
+    addexercicio.ui \
+    addtreino.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

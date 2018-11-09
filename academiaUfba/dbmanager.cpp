@@ -23,15 +23,34 @@ QString DbManager::listarAlunos()
    return retorno;
 }
 
+QString DbManager::listarAlunoEMatricula()
+{
+   QString retorno = "SELECT ID_ALUNO, NOME FROM ALUNO";
+   return retorno;
+}
+
 QString DbManager::listarProfessores()
 {
    QString retorno = "SELECT MATRICULA, NOME, ENDERECO, EMAIL, TELEFONE FROM PROFESSOR";
    return retorno;
 }
 
+QString DbManager::listarProfessorEMatricula()
+{
+   QString retorno = "SELECT ID_PROFESSOR, NOME FROM PROFESSOR";
+   return retorno;
+}
+
+QString DbManager::listarExercicios()
+{
+   QString retorno = "SELECT CODIGO, NOME, DESCRICAO FROM EXERCICIO";
+   return retorno;
+}
+
+
 Aluno DbManager::busca_aluno(const QString& matricula)
 {
-   QString consulta = "SELECT * FROM ALUNO WHERE MATRICULA = " + matricula;
+   QString consulta = "SELECT * FROM ALUNO WHERE MATRICULA = '" + matricula + "'";
    QSqlQuery query(consulta);
    QSqlRecord rec = query.record();
 
@@ -58,7 +77,7 @@ Aluno DbManager::busca_aluno(const QString& matricula)
 
 Professor DbManager::busca_professor(const QString& matricula)
 {
-   QString consulta = "SELECT * FROM PROFESSOR WHERE MATRICULA = " + matricula;
+   QString consulta = "SELECT * FROM PROFESSOR WHERE MATRICULA = '" + matricula + "'";
    QSqlQuery query(consulta);
    QSqlRecord rec = query.record();
 
@@ -80,6 +99,28 @@ Professor DbManager::busca_professor(const QString& matricula)
    professor = new Professor();
 
    return *professor;
+}
+
+exercicio DbManager::busca_exercicio(const QString& codigo)
+{
+   QString consulta = "SELECT * FROM EXERCICIO WHERE CODIGO = '" + codigo + "'";
+   QSqlQuery query(consulta);
+   QSqlRecord rec = query.record();
+
+   exercicio *exercicio1;
+
+   while (query.next())
+   {
+         exercicio1 = new exercicio(query.value(rec.indexOf("CODIGO")).toString(),
+                           query.value(rec.indexOf("NOME")).toString(),
+                           query.value(rec.indexOf("DESCRICAO")).toString(),
+                           query.value(rec.indexOf("IMAGEM")).toString());
+         return *exercicio1;
+   }
+
+   exercicio1 = new exercicio();
+
+   return *exercicio1;
 }
 
 
@@ -145,7 +186,7 @@ bool DbManager::addProfessor(const Professor& professor)
    QSqlQuery query;
 
    if(query.exec("CREATE TABLE IF NOT EXISTS "
-                 "                           PROFESSOR(ID_ALUNO INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                 "                           PROFESSOR(ID_PROFESSOR INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
                  "                                 MATRICULA VARHCAR(6), "
                  "                                 NOME VARCHAR(100),"
                  "                                 ENDERECO VARCHAR(100),"
@@ -191,3 +232,50 @@ bool DbManager::addProfessor(const Professor& professor)
 
    return success;
 }
+
+bool DbManager::addExercicio(const exercicio& exercicio)
+{
+   bool success = false;
+   // you should check if args are ok first...
+   QSqlQuery query;
+
+   if(query.exec("CREATE TABLE IF NOT EXISTS "
+                 "                           EXERCICIO(ID_EXERCICIO INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                 "                                 CODIGO VARHCAR(10), "
+                 "                                 NOME VARCHAR(100),"
+                 "                                 DESCRICAO VARCHAR(100),"
+                 "                                 IMAGEM VARCHAR(200))"))
+   {
+       success = true;
+       qDebug() << "deu certo o create table";
+   }
+   else
+   {
+       success = false;
+       qDebug() << "deu errado o create table";
+   }
+
+   query.clear();
+   query.prepare("INSERT INTO EXERCICIO(CODIGO, NOME,DESCRICAO,IMAGEM) "
+                 "VALUES (:CODIGO,:NOME, :DESCRICAO, :IMAGEM)");
+   query.bindValue(":CODIGO", exercicio.codigo);
+   query.bindValue(":NOME", exercicio.nome);
+   query.bindValue(":DESCRICAO", exercicio.descricao);
+   query.bindValue(":IMAGEM", exercicio.imagem);
+
+
+
+   if(query.exec())
+   {
+       success = true;
+       qDebug() << "deu certo inserir";
+   }
+   else
+   {
+        qDebug() << "deu errado inserir";
+                 //<< query.lastError();
+   }
+
+   return success;
+}
+

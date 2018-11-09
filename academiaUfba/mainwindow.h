@@ -7,6 +7,8 @@
 #include "dbmanager.h"
 #include "addaluno.h"
 #include "addpro.h"
+#include "addexercicio.h"
+#include "addtreino.h"
 
 
 namespace Ui {
@@ -21,12 +23,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void add_aluno();
+private slots:    
     void busca_aluno_por_matricula();
-
-    //void add_professor();
     void busca_professor_por_matricula();
+    void busca_exercicio_por_codigo();
+    void abrir_tela_cadastro_aluno();
+    void abrir_tela_cadastro_professor();
+    void abrir_tela_cadastro_exercicio();
+    void abrir_tela_cadastro_treino();
 
 
 
@@ -37,6 +41,8 @@ private:
 
     AddAluno *addInstAluno;
     addpro *addInstProfessor;
+    addexercicio *addInstExercicio;
+    addTreino *addInstTreino;
 };
 
 #endif // MAINWINDOW_H

@@ -14,16 +14,6 @@
    <string>Fitness UFBA</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTableView" name="tableView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>861</width>
-      <height>221</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
@@ -122,6 +112,55 @@
      </property>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>610</y>
+      <width>181</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Pesquisar Exercício</string>
+    </property>
+    <widget class="QLineEdit" name="lineEdit_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>47</y>
+       <width>113</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>55</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Matricula</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>47</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>OK</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -143,11 +182,13 @@
     <property name="title">
      <string>Treinos</string>
     </property>
+    <addaction name="actionNovo_Treino"/>
    </widget>
    <widget class="QMenu" name="menuConfigura_es">
     <property name="title">
      <string>Configurações</string>
     </property>
+    <addaction name="actionNovo_Exerc_cio"/>
    </widget>
    <addaction name="menuCadastro"/>
    <addaction name="menuTreinos"/>
@@ -171,6 +212,16 @@
   <action name="actionNovo_Professor">
    <property name="text">
     <string>Novo Professor</string>
+   </property>
+  </action>
+  <action name="actionNovo_Exerc_cio">
+   <property name="text">
+    <string>Novo Exercício</string>
+   </property>
+  </action>
+  <action name="actionNovo_Treino">
+   <property name="text">
+    <string>Novo Treino</string>
    </property>
   </action>
  </widget>

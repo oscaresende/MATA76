@@ -7,6 +7,7 @@
 
 #include "aluno.h"
 #include "professor.h"
+#include "exercicio.h"
 
 
 class DbManager
@@ -16,10 +17,16 @@ public:
     bool addAluno(const Aluno& aluno);
     Aluno busca_aluno(const QString& matricula);
     QString listarAlunos();
+    QString listarAlunoEMatricula();
 
     bool addProfessor(const Professor& professor);
     Professor busca_professor(const QString& matricula);
     QString listarProfessores();
+    QString listarProfessorEMatricula();
+
+    bool addExercicio(const exercicio& exercicio);
+    exercicio busca_exercicio(const QString& codigo);
+    QString listarExercicios();
 
     QSqlDatabase m_db;
 private:
