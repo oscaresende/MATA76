@@ -36,7 +36,8 @@ SOURCES += \
     exercicio.cpp \
     addexercicio.cpp \
     treino.cpp \
-    addtreino.cpp
+    addtreino.cpp \
+    removeraluno.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,14 +49,16 @@ HEADERS += \
     exercicio.h \
     addexercicio.h \
     treino.h \
-    addtreino.h
+    addtreino.h \
+    removeraluno.h
 
 FORMS += \
         mainwindow.ui \
     addaluno.ui \
     addpro.ui \
     addexercicio.ui \
-    addtreino.ui
+    addtreino.ui \
+    removeraluno.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

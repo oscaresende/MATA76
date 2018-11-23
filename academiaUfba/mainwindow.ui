@@ -178,15 +178,15 @@
      <x>0</x>
      <y>0</y>
      <width>1022</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuCadastro">
     <property name="title">
-     <string>Cadastro</string>
+     <string>Aluno</string>
     </property>
     <addaction name="actionNovo_aluno"/>
-    <addaction name="actionNovo_Professor"/>
+    <addaction name="actionRemover_Aluno"/>
    </widget>
    <widget class="QMenu" name="menuTreinos">
     <property name="title">
@@ -196,13 +196,22 @@
    </widget>
    <widget class="QMenu" name="menuConfigura_es">
     <property name="title">
-     <string>Configurações</string>
+     <string>Exercício</string>
     </property>
     <addaction name="actionNovo_Exerc_cio"/>
+    <addaction name="actionRemover_Exerc_cio"/>
+   </widget>
+   <widget class="QMenu" name="menuProfessor">
+    <property name="title">
+     <string>Professor</string>
+    </property>
+    <addaction name="actionNovo_Professor_2"/>
+    <addaction name="actionRemover_Professor"/>
    </widget>
    <addaction name="menuCadastro"/>
-   <addaction name="menuTreinos"/>
+   <addaction name="menuProfessor"/>
    <addaction name="menuConfigura_es"/>
+   <addaction name="menuTreinos"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -216,12 +225,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNovo_aluno">
    <property name="text">
-    <string>Novo aluno</string>
-   </property>
-  </action>
-  <action name="actionNovo_Professor">
-   <property name="text">
-    <string>Novo Professor</string>
+    <string>Novo Aluno</string>
    </property>
   </action>
   <action name="actionNovo_Exerc_cio">
@@ -232,6 +236,26 @@
   <action name="actionNovo_Treino">
    <property name="text">
     <string>Novo Treino</string>
+   </property>
+  </action>
+  <action name="actionNovo_Professor_2">
+   <property name="text">
+    <string>Novo Professor</string>
+   </property>
+  </action>
+  <action name="actionRemover_Exerc_cio">
+   <property name="text">
+    <string>Remover Exercício</string>
+   </property>
+  </action>
+  <action name="actionRemover_Professor">
+   <property name="text">
+    <string>Remover Professor</string>
+   </property>
+  </action>
+  <action name="actionRemover_Aluno">
+   <property name="text">
+    <string>Remover Aluno</string>
    </property>
   </action>
  </widget>

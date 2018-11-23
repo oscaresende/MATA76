@@ -18,6 +18,7 @@ public:
     Aluno busca_aluno(const QString& matricula);
     QString listarAlunos();
     QString listarAlunoEMatricula();
+    bool remover_aluno(const QString& matricula);
 
     bool addProfessor(const Professor& professor);
     Professor busca_professor(const QString& matricula);

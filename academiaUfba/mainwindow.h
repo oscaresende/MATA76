@@ -9,6 +9,8 @@
 #include "addpro.h"
 #include "addexercicio.h"
 #include "addtreino.h"
+#include "removeraluno.h"
+
 
 
 namespace Ui {
@@ -31,6 +33,7 @@ private slots:
     void abrir_tela_cadastro_professor();
     void abrir_tela_cadastro_exercicio();
     void abrir_tela_cadastro_treino();
+    void abrir_tela_remover_aluno();
     void carregarTableView();
 
 
@@ -44,6 +47,7 @@ private:
     addpro *addInstProfessor;
     addexercicio *addInstExercicio;
     addTreino *addInstTreino;
+    removeraluno * remInstAluno;
 };
 
 #endif // MAINWINDOW_H

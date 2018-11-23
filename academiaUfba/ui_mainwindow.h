@@ -31,9 +31,12 @@ class Ui_MainWindow
 {
 public:
     QAction *actionNovo_aluno;
-    QAction *actionNovo_Professor;
     QAction *actionNovo_Exerc_cio;
     QAction *actionNovo_Treino;
+    QAction *actionNovo_Professor_2;
+    QAction *actionRemover_Exerc_cio;
+    QAction *actionRemover_Professor;
+    QAction *actionRemover_Aluno;
     QWidget *centralWidget;
     QGroupBox *groupBox;
     QLineEdit *lineEdit;
@@ -52,6 +55,7 @@ public:
     QMenu *menuCadastro;
     QMenu *menuTreinos;
     QMenu *menuConfigura_es;
+    QMenu *menuProfessor;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -62,12 +66,18 @@ public:
         MainWindow->resize(1022, 826);
         actionNovo_aluno = new QAction(MainWindow);
         actionNovo_aluno->setObjectName(QStringLiteral("actionNovo_aluno"));
-        actionNovo_Professor = new QAction(MainWindow);
-        actionNovo_Professor->setObjectName(QStringLiteral("actionNovo_Professor"));
         actionNovo_Exerc_cio = new QAction(MainWindow);
         actionNovo_Exerc_cio->setObjectName(QStringLiteral("actionNovo_Exerc_cio"));
         actionNovo_Treino = new QAction(MainWindow);
         actionNovo_Treino->setObjectName(QStringLiteral("actionNovo_Treino"));
+        actionNovo_Professor_2 = new QAction(MainWindow);
+        actionNovo_Professor_2->setObjectName(QStringLiteral("actionNovo_Professor_2"));
+        actionRemover_Exerc_cio = new QAction(MainWindow);
+        actionRemover_Exerc_cio->setObjectName(QStringLiteral("actionRemover_Exerc_cio"));
+        actionRemover_Professor = new QAction(MainWindow);
+        actionRemover_Professor->setObjectName(QStringLiteral("actionRemover_Professor"));
+        actionRemover_Aluno = new QAction(MainWindow);
+        actionRemover_Aluno->setObjectName(QStringLiteral("actionRemover_Aluno"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         groupBox = new QGroupBox(centralWidget);
@@ -112,13 +122,15 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1022, 22));
+        menuBar->setGeometry(QRect(0, 0, 1022, 26));
         menuCadastro = new QMenu(menuBar);
         menuCadastro->setObjectName(QStringLiteral("menuCadastro"));
         menuTreinos = new QMenu(menuBar);
         menuTreinos->setObjectName(QStringLiteral("menuTreinos"));
         menuConfigura_es = new QMenu(menuBar);
         menuConfigura_es->setObjectName(QStringLiteral("menuConfigura_es"));
+        menuProfessor = new QMenu(menuBar);
+        menuProfessor->setObjectName(QStringLiteral("menuProfessor"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -128,12 +140,16 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         menuBar->addAction(menuCadastro->menuAction());
-        menuBar->addAction(menuTreinos->menuAction());
+        menuBar->addAction(menuProfessor->menuAction());
         menuBar->addAction(menuConfigura_es->menuAction());
+        menuBar->addAction(menuTreinos->menuAction());
         menuCadastro->addAction(actionNovo_aluno);
-        menuCadastro->addAction(actionNovo_Professor);
+        menuCadastro->addAction(actionRemover_Aluno);
         menuTreinos->addAction(actionNovo_Treino);
         menuConfigura_es->addAction(actionNovo_Exerc_cio);
+        menuConfigura_es->addAction(actionRemover_Exerc_cio);
+        menuProfessor->addAction(actionNovo_Professor_2);
+        menuProfessor->addAction(actionRemover_Professor);
         mainToolBar->addSeparator();
 
         retranslateUi(MainWindow);
@@ -144,10 +160,13 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fitness UFBA", nullptr));
-        actionNovo_aluno->setText(QApplication::translate("MainWindow", "Novo aluno", nullptr));
-        actionNovo_Professor->setText(QApplication::translate("MainWindow", "Novo Professor", nullptr));
+        actionNovo_aluno->setText(QApplication::translate("MainWindow", "Novo Aluno", nullptr));
         actionNovo_Exerc_cio->setText(QApplication::translate("MainWindow", "Novo Exerc\303\255cio", nullptr));
         actionNovo_Treino->setText(QApplication::translate("MainWindow", "Novo Treino", nullptr));
+        actionNovo_Professor_2->setText(QApplication::translate("MainWindow", "Novo Professor", nullptr));
+        actionRemover_Exerc_cio->setText(QApplication::translate("MainWindow", "Remover Exerc\303\255cio", nullptr));
+        actionRemover_Professor->setText(QApplication::translate("MainWindow", "Remover Professor", nullptr));
+        actionRemover_Aluno->setText(QApplication::translate("MainWindow", "Remover Aluno", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Pesquisar Aluno", nullptr));
         label->setText(QApplication::translate("MainWindow", "Matricula", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "OK", nullptr));
@@ -157,9 +176,10 @@ public:
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Pesquisar Exerc\303\255cio", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "Matricula", nullptr));
         pushButton_4->setText(QApplication::translate("MainWindow", "OK", nullptr));
-        menuCadastro->setTitle(QApplication::translate("MainWindow", "Cadastro", nullptr));
+        menuCadastro->setTitle(QApplication::translate("MainWindow", "Aluno", nullptr));
         menuTreinos->setTitle(QApplication::translate("MainWindow", "Treinos", nullptr));
-        menuConfigura_es->setTitle(QApplication::translate("MainWindow", "Configura\303\247\303\265es", nullptr));
+        menuConfigura_es->setTitle(QApplication::translate("MainWindow", "Exerc\303\255cio", nullptr));
+        menuProfessor->setTitle(QApplication::translate("MainWindow", "Professor", nullptr));
     } // retranslateUi
 
 };

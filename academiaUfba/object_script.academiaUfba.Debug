@@ -10,9 +10,11 @@ INPUT(
 ./debug\addexercicio.o
 ./debug\treino.o
 ./debug\addtreino.o
+./debug\removeraluno.o
 ./debug\moc_mainwindow.o
 ./debug\moc_addaluno.o
 ./debug\moc_addpro.o
 ./debug\moc_addexercicio.o
 ./debug\moc_addtreino.o
+./debug\moc_removeraluno.o
 );

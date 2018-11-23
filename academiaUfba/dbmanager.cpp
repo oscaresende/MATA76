@@ -25,8 +25,28 @@ QString DbManager::listarAlunos()
 
 QString DbManager::listarAlunoEMatricula()
 {
-   QString retorno = "SELECT ID_ALUNO, NOME FROM ALUNO";
+   QString retorno = "SELECT MATRICULA, NOME FROM ALUNO";
    return retorno;
+}
+
+bool DbManager::remover_aluno(const QString& matricula)
+{
+    QSqlQuery query;
+    query.prepare ("DELETE FROM ALUNO WHERE MATRICULA = :MATRICULA");
+
+    query.bindValue(":MATRICULA", matricula);
+
+    if (query.exec())
+    {
+        qDebug() << "A remoção deu certo!";
+        return true;
+    }
+
+    else
+    {
+        qDebug() << "A remoção falhou!";
+        return false;
+    }
 }
 
 QString DbManager::listarProfessores()
@@ -132,7 +152,7 @@ bool DbManager::addAluno(const Aluno& aluno)
 
    if(query.exec("CREATE TABLE IF NOT EXISTS "
                  "                           ALUNO(ID_ALUNO INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                 "                                 MATRICULA VARHCAR(6), "
+                 "                                 MATRICULA VARCHAR(6), "
                  "                                 NOME VARCHAR(100),"
                  "                                 ENDERECO VARCHAR(100),"
                  "                                 EMAIL VARCHAR(50),"

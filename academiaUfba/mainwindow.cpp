@@ -20,9 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_4, SIGNAL(clicked()),this, SLOT(busca_exercicio_por_codigo()));
 
     connect(ui->actionNovo_aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_aluno()));
-    connect(ui->actionNovo_Professor,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_professor()));
+    connect(ui->actionNovo_Professor_2,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_professor()));
     connect(ui->actionNovo_Exerc_cio,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_exercicio()));
     connect(ui->actionNovo_Treino,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_treino()));
+    connect(ui->actionRemover_Aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_aluno()));
 
 
     dbm = new DbManager("fitnessUfba");
@@ -107,6 +108,14 @@ void MainWindow::abrir_tela_cadastro_treino()
     addInstTreino = new addTreino();
     addInstTreino->setWindowTitle("Cadastro de Treino");
     addInstTreino->show();
+}
+
+void MainWindow::abrir_tela_remover_aluno()
+{
+    remInstAluno = new removeraluno();
+    remInstAluno->setWindowTitle("Remoção de Aluno");
+    remInstAluno->show();
+    connect(remInstAluno, SIGNAL(recarrega()), this, SLOT( carregarTableView()));
 }
 
 void MainWindow::carregarTableView()
