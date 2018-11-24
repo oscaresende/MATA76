@@ -21,6 +21,9 @@ private slots:
     void cancelar();
     void escolher_arquivo();
 
+signals:
+    void recarrega();
+
 private:
     Ui::AddAluno *ui;        
     QImage imageFile;

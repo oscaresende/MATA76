@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -20,6 +21,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -45,6 +47,7 @@ public:
     QLineEdit *lineEdit_3;
     QLabel *label_3;
     QPushButton *pushButton_4;
+    QTableView *tableView;
     QMenuBar *menuBar;
     QMenu *menuCadastro;
     QMenu *menuTreinos;
@@ -103,10 +106,13 @@ public:
         pushButton_4 = new QPushButton(groupBox_3);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
         pushButton_4->setGeometry(QRect(130, 47, 41, 21));
+        tableView = new QTableView(centralWidget);
+        tableView->setObjectName(QStringLiteral("tableView"));
+        tableView->setGeometry(QRect(0, 0, 671, 192));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1022, 26));
+        menuBar->setGeometry(QRect(0, 0, 1022, 22));
         menuCadastro = new QMenu(menuBar);
         menuCadastro->setObjectName(QStringLiteral("menuCadastro"));
         menuTreinos = new QMenu(menuBar);

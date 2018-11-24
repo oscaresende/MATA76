@@ -24,16 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionNovo_Exerc_cio,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_exercicio()));
     connect(ui->actionNovo_Treino,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_treino()));
 
-    DbManager *dbm = new DbManager("fitnessUfba");
 
-    //model = new QSqlQueryModel(this);
-    //model->setQuery(dbm->listarAlunos(),dbm->m_db);
-    //proxyModel = new QSortFilterProxyModel(this);
-    //proxyModel->setSourceModel(model);
-    //proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    //ui->tableView->setModel(proxyModel);
-    //ui->tableView->show();
-}
+    dbm = new DbManager("fitnessUfba");
+    carregarTableView();
+    }
 
 MainWindow::~MainWindow()
 {
@@ -90,6 +84,7 @@ void MainWindow::abrir_tela_cadastro_aluno()
     addInstAluno = new AddAluno();
     addInstAluno->setWindowTitle("Cadastro de Aluno");
     addInstAluno->show();
+    connect(addInstAluno, SIGNAL(recarrega()), this, SLOT( carregarTableView()));
 }
 
 void MainWindow::abrir_tela_cadastro_professor()
@@ -112,4 +107,15 @@ void MainWindow::abrir_tela_cadastro_treino()
     addInstTreino = new addTreino();
     addInstTreino->setWindowTitle("Cadastro de Treino");
     addInstTreino->show();
+}
+
+void MainWindow::carregarTableView()
+{
+    model = new QSqlQueryModel(this);
+    model->setQuery(dbm->listarAlunos(),dbm->m_db);
+    proxyModel = new QSortFilterProxyModel(this);
+    proxyModel->setSourceModel(model);
+    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    ui->tableView->setModel(proxyModel);
+    ui->tableView->show();
 }

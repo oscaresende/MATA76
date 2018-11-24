@@ -64,21 +64,32 @@ void AddAluno::cadastrar()
         DbManager *manager = new DbManager("fitnessUfba");
 
         //QByteArray compressed = qCompress(imageFile.bits(), imageFile.byteCount());
+        Aluno Pesquisa = db->busca_aluno(ui->lineEdit_7->text());
 
-        Aluno *novo = new Aluno(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
-                                ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
-
-        if(manager->addAluno(*novo))
-        {
-            mensagem.setText("Aluno cadastrado com sucesso!");
-            mensagem.exec();
-            this->close();
-        }
-        else
-        {
-            mensagem.setText("Inclusão não realizada.");
+        if(Pesquisa.matricula!=""){
+            mensagem.setText("Matricula existente!");
             mensagem.exec();
         }
+
+        else {
+
+            Aluno *novo = new Aluno(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
+                                    ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
+
+            if(manager->addAluno(*novo))
+            {
+                mensagem.setText("Aluno cadastrado com sucesso!");
+                mensagem.exec();
+                emit recarrega();
+                this->close();
+            }
+            else
+            {
+                mensagem.setText("Inclusão não realizada.");
+                mensagem.exec();
+            }
+        }
+
     }
 }
 

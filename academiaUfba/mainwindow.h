@@ -31,6 +31,7 @@ private slots:
     void abrir_tela_cadastro_professor();
     void abrir_tela_cadastro_exercicio();
     void abrir_tela_cadastro_treino();
+    void carregarTableView();
 
 
 
@@ -38,7 +39,7 @@ private:
     Ui::MainWindow *ui;
     QSqlQueryModel *model;
     QSortFilterProxyModel *proxyModel;
-
+    DbManager *dbm;
     AddAluno *addInstAluno;
     addpro *addInstProfessor;
     addexercicio *addInstExercicio;
