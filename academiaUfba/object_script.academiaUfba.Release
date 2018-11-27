@@ -11,10 +11,12 @@ INPUT(
 ./release\treino.o
 ./release\addtreino.o
 ./release\removeraluno.o
+./release\login.o
 ./release\moc_mainwindow.o
 ./release\moc_addaluno.o
 ./release\moc_addpro.o
 ./release\moc_addexercicio.o
 ./release\moc_addtreino.o
 ./release\moc_removeraluno.o
+./release\moc_login.o
 );

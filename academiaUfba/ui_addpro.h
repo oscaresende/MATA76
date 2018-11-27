@@ -41,6 +41,8 @@ public:
     QLabel *label_6;
     QLabel *label_7;
     QLineEdit *lineEdit;
+    QLabel *label_8;
+    QLineEdit *lineEdit_8;
 
     void setupUi(QWidget *addpro)
     {
@@ -101,6 +103,13 @@ public:
         lineEdit = new QLineEdit(addpro);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(110, 50, 261, 20));
+        label_8 = new QLabel(addpro);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(210, 16, 41, 16));
+        lineEdit_8 = new QLineEdit(addpro);
+        lineEdit_8->setObjectName(QStringLiteral("lineEdit_8"));
+        lineEdit_8->setGeometry(QRect(260, 14, 81, 20));
+        lineEdit_8->setEchoMode(QLineEdit::Password);
 
         retranslateUi(addpro);
 
@@ -121,6 +130,7 @@ public:
         toolButton->setText(QApplication::translate("addpro", "...", nullptr));
         label_6->setText(QApplication::translate("addpro", "CPF", nullptr));
         label_7->setText(QApplication::translate("addpro", "Matricula", nullptr));
+        label_8->setText(QApplication::translate("addpro", "Senha", nullptr));
     } // retranslateUi
 
 };

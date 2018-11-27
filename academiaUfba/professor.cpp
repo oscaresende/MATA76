@@ -5,11 +5,12 @@ Professor::Professor()
 
 }
 
-Professor::Professor(const QString& matricula, const QString& name, const QString& endereco, const QString& email,
+Professor::Professor(const QString& matricula, const QString& senha, const QString& name, const QString& endereco, const QString& email,
              const QDateTime& data_nascimento, const QString& cpf, const QString& telefone, const QString& imagem)
 {
     Professor::id=NULL;
     Professor::matricula=matricula;
+    Professor::senha=senha;
     Professor::nome=name;
     Professor::endereco=endereco;
     Professor::email=email;

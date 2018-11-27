@@ -10,6 +10,8 @@
 #include "addexercicio.h"
 #include "addtreino.h"
 #include "removeraluno.h"
+#include "login.h"
+
 
 
 
@@ -35,8 +37,9 @@ private slots:
     void abrir_tela_cadastro_treino();
     void abrir_tela_remover_aluno();
     void carregarTableView();
-
-
+    void logar(int i);
+    void autenticar();
+    void desautenticar();
 
 private:
     Ui::MainWindow *ui;
@@ -48,6 +51,11 @@ private:
     addexercicio *addInstExercicio;
     addTreino *addInstTreino;
     removeraluno * remInstAluno;
+    login * addInstlogin;
+
+    bool autenticado;
+    QString usuario;
+
 };
 
 #endif // MAINWINDOW_H

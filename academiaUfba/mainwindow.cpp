@@ -7,6 +7,7 @@
 #include "dbmanager.h"
 #include "QString"
 #include "QDebug"
+#include "QSignalMapper"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -15,18 +16,38 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    autenticado = false;
+    usuario = "";
+
+    QSignalMapper* signalMapper = new QSignalMapper(this);
+
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(busca_aluno_por_matricula()));
     connect(ui->pushButton_3, SIGNAL(clicked()),this, SLOT(busca_professor_por_matricula()));    
     connect(ui->pushButton_4, SIGNAL(clicked()),this, SLOT(busca_exercicio_por_codigo()));
 
-    connect(ui->actionNovo_aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_aluno()));
+    connect(ui->actionNovo_aluno,SIGNAL(triggered()),signalMapper, SLOT(map()));
+    connect(ui->actionNovo_Professor_2,SIGNAL(triggered()),signalMapper, SLOT(map()));
+    connect(ui->actionNovo_Exerc_cio,SIGNAL(triggered()),signalMapper, SLOT(map()));
+    connect(ui->actionNovo_Treino,SIGNAL(triggered()),signalMapper, SLOT(map()));
+    connect(ui->actionRemover_Aluno,SIGNAL(triggered()),signalMapper, SLOT(map()));
+    connect(ui->pushButton,SIGNAL(clicked()),signalMapper, SLOT(map()));
+
+    signalMapper->setMapping(ui->actionNovo_aluno,0);
+    signalMapper->setMapping(ui->actionNovo_Professor_2,1);
+    signalMapper->setMapping(ui->actionNovo_Exerc_cio,2);
+    signalMapper->setMapping(ui->actionNovo_Treino,3);
+    signalMapper->setMapping(ui->actionRemover_Aluno,4);
+    signalMapper->setMapping(ui->pushButton,999);
+
+    connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(logar(int)));
+
+    /*connect(ui->actionNovo_aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_aluno()));
     connect(ui->actionNovo_Professor_2,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_professor()));
     connect(ui->actionNovo_Exerc_cio,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_exercicio()));
     connect(ui->actionNovo_Treino,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_treino()));
-    connect(ui->actionRemover_Aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_aluno()));
+    connect(ui->actionRemover_Aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_aluno()));*/
 
-
-    dbm = new DbManager("fitnessUfba");
+    dbm = new DbManager("fitnessUfba");    
     carregarTableView();
     }
 
@@ -128,3 +149,63 @@ void MainWindow::carregarTableView()
     ui->tableView->setModel(proxyModel);
     ui->tableView->show();
 }
+
+void MainWindow::logar(int i)
+{
+    if (autenticado == false)
+    {
+        addInstlogin = new login();
+        addInstlogin->setWindowTitle("Autenticar");
+        addInstlogin->show();
+        connect(addInstlogin, SIGNAL(autenticou()), this, SLOT(autenticar()));
+    }
+    else
+    {
+        switch (i) {
+        case 0:
+            abrir_tela_cadastro_aluno();
+            break;
+
+        case 1:
+            abrir_tela_cadastro_professor();
+            break;
+
+        case 2:
+            abrir_tela_cadastro_exercicio();
+            break;
+
+        case 3:
+            abrir_tela_cadastro_treino();
+            break;
+
+        case 4:
+            abrir_tela_remover_aluno();
+            break;
+
+        case 999:
+            desautenticar();
+            break;
+
+        }
+    }
+}
+
+void MainWindow::autenticar()
+{
+    this->autenticado = true;
+    ui->label_5->setText("Sim");
+    //this->usuario = "Alguém";
+    ui->pushButton->setText("Logout");
+}
+
+void MainWindow::desautenticar()
+{
+    this->autenticado = false;
+    //this->usuario = "";
+    ui->label_5->setText("Não");
+    ui->pushButton->setText("Entrar");
+}
+
+
+
+

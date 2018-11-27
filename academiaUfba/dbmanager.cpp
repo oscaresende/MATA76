@@ -106,6 +106,7 @@ Professor DbManager::busca_professor(const QString& matricula)
    while (query.next())
    {
          professor = new Professor(query.value(rec.indexOf("MATRICULA")).toString(),
+                           query.value(rec.indexOf("SENHA")).toString(),
                            query.value(rec.indexOf("NOME")).toString(),
                            query.value(rec.indexOf("ENDERECO")).toString(),
                            query.value(rec.indexOf("EMAIL")).toString(),
@@ -207,7 +208,8 @@ bool DbManager::addProfessor(const Professor& professor)
 
    if(query.exec("CREATE TABLE IF NOT EXISTS "
                  "                           PROFESSOR(ID_PROFESSOR INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                 "                                 MATRICULA VARHCAR(6), "
+                 "                                 MATRICULA VARCHAR(6),"
+                 "                                 SENHA VARCHAR(6),"
                  "                                 NOME VARCHAR(100),"
                  "                                 ENDERECO VARCHAR(100),"
                  "                                 EMAIL VARCHAR(50),"
@@ -226,9 +228,10 @@ bool DbManager::addProfessor(const Professor& professor)
    }
 
    query.clear();
-   query.prepare("INSERT INTO PROFESSOR(MATRICULA, NOME,ENDERECO,EMAIL,DATA_NASCIMENTO,CPF,TELEFONE, IMAGEM) "
-                 "VALUES (:MATRICULA,:NOME, :ENDERECO, :EMAIL, :DATA_NASCIMENTO, :CPF, :TELEFONE, :IMAGEM)");
+   query.prepare("INSERT INTO PROFESSOR(MATRICULA, SENHA, NOME,ENDERECO,EMAIL,DATA_NASCIMENTO,CPF,TELEFONE, IMAGEM) "
+                 "VALUES (:MATRICULA,:SENHA,:NOME, :ENDERECO, :EMAIL, :DATA_NASCIMENTO, :CPF, :TELEFONE, :IMAGEM)");
    query.bindValue(":MATRICULA", professor.matricula);
+   query.bindValue(":SENHA", professor.senha);
    query.bindValue(":NOME", professor.nome);
    query.bindValue(":ENDERECO", professor.endereco);
    query.bindValue(":EMAIL", professor.email);

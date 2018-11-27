@@ -24,6 +24,7 @@ addpro::addpro(QWidget *parent, Professor *professor) :
         if (professor != NULL)
         {
             ui->lineEdit_7->setText(professor->matricula);
+            ui->lineEdit_8->setText(professor->senha);
             ui->lineEdit->setText(professor->nome);
             ui->lineEdit_2->setText(professor->endereco);
             ui->lineEdit_3->setText(professor->telefone);
@@ -62,7 +63,7 @@ void addpro::cadastrar()
     {
         DbManager *manager = new DbManager("fitnessUfba");
 
-        Professor *novo = new Professor(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
+        Professor *novo = new Professor(ui->lineEdit_7->text(),ui->lineEdit_8->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
                                 ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
 
         if(manager->addProfessor(*novo))

@@ -51,6 +51,9 @@ public:
     QLabel *label_3;
     QPushButton *pushButton_4;
     QTableView *tableView;
+    QLabel *label_4;
+    QLabel *label_5;
+    QPushButton *pushButton;
     QMenuBar *menuBar;
     QMenu *menuCadastro;
     QMenu *menuTreinos;
@@ -119,6 +122,15 @@ public:
         tableView = new QTableView(centralWidget);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setGeometry(QRect(0, 0, 671, 192));
+        label_4 = new QLabel(centralWidget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(890, 0, 51, 16));
+        label_5 = new QLabel(centralWidget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(950, 0, 71, 16));
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(890, 20, 93, 28));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -176,6 +188,9 @@ public:
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Pesquisar Exerc\303\255cio", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "Matricula", nullptr));
         pushButton_4->setText(QApplication::translate("MainWindow", "OK", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "Logado:", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "N\303\243o", nullptr));
+        pushButton->setText(QApplication::translate("MainWindow", "Entrar", nullptr));
         menuCadastro->setTitle(QApplication::translate("MainWindow", "Aluno", nullptr));
         menuTreinos->setTitle(QApplication::translate("MainWindow", "Treinos", nullptr));
         menuConfigura_es->setTitle(QApplication::translate("MainWindow", "Exerc\303\255cio", nullptr));
