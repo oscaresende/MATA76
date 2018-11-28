@@ -28,7 +28,8 @@ void login::autenticar()
         {
             mensagem.setText("Autenticado");
             mensagem.exec();
-            emit autenticou();
+            usuario = "admin";
+            emit autenticou(usuario);
             this->close();
         }
         else
@@ -48,7 +49,8 @@ void login::autenticar()
             {
                 mensagem.setText("Autenticado");
                 mensagem.exec();
-                emit autenticou();
+                usuario = Pesquisa.nome;
+                emit autenticou(usuario);
                 this->close();
             }
             else

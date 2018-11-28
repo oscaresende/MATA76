@@ -10,6 +10,7 @@
 #define UI_LOGIN_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
@@ -33,6 +34,9 @@ public:
         if (login->objectName().isEmpty())
             login->setObjectName(QStringLiteral("login"));
         login->resize(371, 146);
+        QIcon icon;
+        icon.addFile(QStringLiteral("icone.png"), QSize(), QIcon::Normal, QIcon::Off);
+        login->setWindowIcon(icon);
         label = new QLabel(login);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(80, 53, 51, 16));

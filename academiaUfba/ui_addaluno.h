@@ -10,6 +10,7 @@
 #define UI_ADDALUNO_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QLabel>
@@ -47,6 +48,9 @@ public:
         if (AddAluno->objectName().isEmpty())
             AddAluno->setObjectName(QStringLiteral("AddAluno"));
         AddAluno->resize(592, 300);
+        QIcon icon;
+        icon.addFile(QStringLiteral("icone.png"), QSize(), QIcon::Normal, QIcon::Off);
+        AddAluno->setWindowIcon(icon);
         label = new QLabel(AddAluno);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 59, 91, 16));

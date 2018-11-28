@@ -10,6 +10,7 @@
 #define UI_REMOVERALUNO_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
@@ -30,6 +31,9 @@ public:
         if (removeraluno->objectName().isEmpty())
             removeraluno->setObjectName(QStringLiteral("removeraluno"));
         removeraluno->resize(481, 189);
+        QIcon icon;
+        icon.addFile(QStringLiteral("icone.png"), QSize(), QIcon::Normal, QIcon::Off);
+        removeraluno->setWindowIcon(icon);
         buttonBox = new QDialogButtonBox(removeraluno);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
         buttonBox->setGeometry(QRect(100, 100, 341, 32));

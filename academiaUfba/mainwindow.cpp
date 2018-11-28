@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     autenticado = false;
-    usuario = "";
+    //usuario = "";
 
     QSignalMapper* signalMapper = new QSignalMapper(this);
 
@@ -40,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
     signalMapper->setMapping(ui->pushButton,999);
 
     connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(logar(int)));
+
+    ui->menuBar->setEnabled(false);
 
     /*connect(ui->actionNovo_aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_aluno()));
     connect(ui->actionNovo_Professor_2,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_professor()));
@@ -157,7 +159,7 @@ void MainWindow::logar(int i)
         addInstlogin = new login();
         addInstlogin->setWindowTitle("Autenticar");
         addInstlogin->show();
-        connect(addInstlogin, SIGNAL(autenticou()), this, SLOT(autenticar()));
+        connect(addInstlogin, SIGNAL(autenticou(QString&)), this, SLOT(autenticar(QString&)));
     }
     else
     {
@@ -190,20 +192,20 @@ void MainWindow::logar(int i)
     }
 }
 
-void MainWindow::autenticar()
+void MainWindow::autenticar(QString &usuario)
 {
     this->autenticado = true;
-    ui->label_5->setText("Sim");
-    //this->usuario = "Alguém";
+    ui->label_5->setText("Olá, " + usuario);
     ui->pushButton->setText("Logout");
+    ui->menuBar->setEnabled(true);
 }
 
 void MainWindow::desautenticar()
 {
     this->autenticado = false;
-    //this->usuario = "";
-    ui->label_5->setText("Não");
-    ui->pushButton->setText("Entrar");
+    ui->label_5->setText("");
+    ui->pushButton->setText("Login");
+    ui->menuBar->setEnabled(false);
 }
 
 

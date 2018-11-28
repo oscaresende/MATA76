@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_login_t {
-    QByteArrayData data[5];
-    char stringdata0[38];
+    QByteArrayData data[7];
+    char stringdata0[55];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,11 +34,14 @@ static const qt_meta_stringdata_login_t qt_meta_stringdata_login = {
 QT_MOC_LITERAL(0, 0, 5), // "login"
 QT_MOC_LITERAL(1, 6, 10), // "autenticou"
 QT_MOC_LITERAL(2, 17, 0), // ""
-QT_MOC_LITERAL(3, 18, 10), // "autenticar"
-QT_MOC_LITERAL(4, 29, 8) // "cancelar"
+QT_MOC_LITERAL(3, 18, 8), // "QString&"
+QT_MOC_LITERAL(4, 27, 7), // "usuario"
+QT_MOC_LITERAL(5, 35, 10), // "autenticar"
+QT_MOC_LITERAL(6, 46, 8) // "cancelar"
 
     },
-    "login\0autenticou\0\0autenticar\0cancelar"
+    "login\0autenticou\0\0QString&\0usuario\0"
+    "autenticar\0cancelar"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,14 +59,14 @@ static const uint qt_meta_data_login[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06 /* Public */,
+       1,    1,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   30,    2, 0x0a /* Public */,
-       4,    0,   31,    2, 0x0a /* Public */,
+       5,    0,   32,    2, 0x08 /* Private */,
+       6,    0,   33,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 3,    4,
 
  // slots: parameters
     QMetaType::Void,
@@ -78,7 +81,7 @@ void login::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         login *_t = static_cast<login *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->autenticou(); break;
+        case 0: _t->autenticou((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->autenticar(); break;
         case 2: _t->cancelar(); break;
         default: ;
@@ -86,14 +89,13 @@ void login::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (login::*)();
+            using _t = void (login::*)(QString & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&login::autenticou)) {
                 *result = 0;
                 return;
             }
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject login::staticMetaObject = {
@@ -133,9 +135,10 @@ int login::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void login::autenticou()
+void login::autenticou(QString & _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

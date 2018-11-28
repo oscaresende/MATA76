@@ -10,6 +10,7 @@
 #define UI_ADDPRO_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QLabel>
@@ -49,6 +50,9 @@ public:
         if (addpro->objectName().isEmpty())
             addpro->setObjectName(QStringLiteral("addpro"));
         addpro->resize(578, 311);
+        QIcon icon;
+        icon.addFile(QStringLiteral("icone.png"), QSize(), QIcon::Normal, QIcon::Off);
+        addpro->setWindowIcon(icon);
         lineEdit_7 = new QLineEdit(addpro);
         lineEdit_7->setObjectName(QStringLiteral("lineEdit_7"));
         lineEdit_7->setGeometry(QRect(110, 15, 81, 20));

@@ -10,6 +10,7 @@
 #define UI_ADDTREINO_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
@@ -41,6 +42,9 @@ public:
         if (addTreino->objectName().isEmpty())
             addTreino->setObjectName(QStringLiteral("addTreino"));
         addTreino->resize(400, 300);
+        QIcon icon;
+        icon.addFile(QStringLiteral("icone.png"), QSize(), QIcon::Normal, QIcon::Off);
+        addTreino->setWindowIcon(icon);
         comboBox = new QComboBox(addTreino);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setGeometry(QRect(90, 40, 231, 22));

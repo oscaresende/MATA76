@@ -38,8 +38,10 @@ private slots:
     void abrir_tela_remover_aluno();
     void carregarTableView();
     void logar(int i);
-    void autenticar();
     void desautenticar();
+
+public slots:
+    void autenticar(QString &usuario);
 
 private:
     Ui::MainWindow *ui;
@@ -54,7 +56,7 @@ private:
     login * addInstlogin;
 
     bool autenticado;
-    QString usuario;
+    //QString usuario;
 
 };
 

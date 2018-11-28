@@ -10,6 +10,7 @@
 #define UI_ADDEXERCICIO_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -38,6 +39,9 @@ public:
         if (addexercicio->objectName().isEmpty())
             addexercicio->setObjectName(QStringLiteral("addexercicio"));
         addexercicio->resize(631, 300);
+        QIcon icon;
+        icon.addFile(QStringLiteral("icone.png"), QSize(), QIcon::Normal, QIcon::Off);
+        addexercicio->setWindowIcon(icon);
         lineEdit = new QLineEdit(addexercicio);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(120, 133, 261, 20));

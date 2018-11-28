@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Fitness UFBA</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icone.png</normaloff>icone.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
@@ -171,43 +175,30 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>890</x>
-      <y>0</y>
-      <width>51</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Logado:</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>950</x>
-      <y>0</y>
-      <width>71</width>
+      <x>811</x>
+      <y>1</y>
+      <width>200</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Não</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>920</x>
       <y>20</y>
       <width>93</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
-     <string>Entrar</string>
+     <string>Login</string>
     </property>
    </widget>
   </widget>

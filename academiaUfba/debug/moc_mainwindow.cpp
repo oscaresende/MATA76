@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[15];
-    char stringdata0[284];
+    QByteArrayData data[17];
+    char stringdata0[301];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,8 +44,10 @@ QT_MOC_LITERAL(9, 208, 24), // "abrir_tela_remover_aluno"
 QT_MOC_LITERAL(10, 233, 17), // "carregarTableView"
 QT_MOC_LITERAL(11, 251, 5), // "logar"
 QT_MOC_LITERAL(12, 257, 1), // "i"
-QT_MOC_LITERAL(13, 259, 10), // "autenticar"
-QT_MOC_LITERAL(14, 270, 13) // "desautenticar"
+QT_MOC_LITERAL(13, 259, 13), // "desautenticar"
+QT_MOC_LITERAL(14, 273, 10), // "autenticar"
+QT_MOC_LITERAL(15, 284, 8), // "QString&"
+QT_MOC_LITERAL(16, 293, 7) // "usuario"
 
     },
     "MainWindow\0busca_aluno_por_matricula\0"
@@ -56,7 +58,8 @@ QT_MOC_LITERAL(14, 270, 13) // "desautenticar"
     "abrir_tela_cadastro_exercicio\0"
     "abrir_tela_cadastro_treino\0"
     "abrir_tela_remover_aluno\0carregarTableView\0"
-    "logar\0i\0autenticar\0desautenticar"
+    "logar\0i\0desautenticar\0autenticar\0"
+    "QString&\0usuario"
 };
 #undef QT_MOC_LITERAL
 
@@ -85,7 +88,7 @@ static const uint qt_meta_data_MainWindow[] = {
       10,    0,   82,    2, 0x08 /* Private */,
       11,    1,   83,    2, 0x08 /* Private */,
       13,    0,   86,    2, 0x08 /* Private */,
-      14,    0,   87,    2, 0x08 /* Private */,
+      14,    1,   87,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -99,7 +102,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   12,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 15,   16,
 
        0        // eod
 };
@@ -120,8 +123,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: _t->abrir_tela_remover_aluno(); break;
         case 8: _t->carregarTableView(); break;
         case 9: _t->logar((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 10: _t->autenticar(); break;
-        case 11: _t->desautenticar(); break;
+        case 10: _t->desautenticar(); break;
+        case 11: _t->autenticar((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }

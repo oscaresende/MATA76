@@ -17,12 +17,14 @@ class login : public QDialog
 public:
     explicit login(QWidget *parent = nullptr);
     ~login();
-public slots:
+    QString usuario;
+
+private slots:
     void autenticar();
     void cancelar();
 
 signals:
-    void autenticou();
+    void autenticou(QString &usuario);
 
 private:
     Ui::login *ui;
