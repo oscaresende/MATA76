@@ -144,7 +144,6 @@ void MainWindow::logar()
 {
     if (autenticado == false)
     {
-        this->setEnabled(false);
         addInstlogin = new login();
         addInstlogin->setWindowTitle("Autenticar");
         addInstlogin->show();
@@ -163,7 +162,6 @@ void MainWindow::autenticar(QString &usuario)
     ui->label_5->setStyleSheet("QLabel { background-color : white; color : blue; }");
     ui->pushButton->setText("Logout");
     ui->menuBar->setEnabled(true);
-    this->setEnabled(true);
 }
 
 void MainWindow::desautenticar()
