@@ -26,6 +26,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void desautenticar();
 
 private slots:    
     void busca_aluno_por_matricula();
@@ -37,8 +38,7 @@ private slots:
     void abrir_tela_cadastro_treino();
     void abrir_tela_remover_aluno();
     void carregarTableView();
-    void logar(int i);
-    void desautenticar();
+    void logar();
 
 public slots:
     void autenticar(QString &usuario);
@@ -54,10 +54,7 @@ private:
     addTreino *addInstTreino;
     removeraluno * remInstAluno;
     login * addInstlogin;
-
     bool autenticado;
-    //QString usuario;
-
 };
 
 #endif // MAINWINDOW_H
