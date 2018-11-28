@@ -19,12 +19,22 @@ public:
     ~addTreino();
 private slots:
     void cancelar();
+    void carregarTableViewDisponiveis();
+    void carregarTableViewUsados();
+    void adicionar_exercicio();
+    void remover_exercicio();
 
 private:
     Ui::addTreino *ui;
+    DbManager *db;
     QSqlQueryModel *model;
     QSqlQueryModel *model2;
+
+
     QSortFilterProxyModel *proxyModel;
+    QSortFilterProxyModel *proxyModel2;
+    QSqlQueryModel *model3;
+    QSqlQueryModel *model4;
 };
 
 #endif // ADDTREINO_H

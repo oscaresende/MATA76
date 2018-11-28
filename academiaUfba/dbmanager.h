@@ -28,6 +28,7 @@ public:
     bool addExercicio(const exercicio& exercicio);
     exercicio busca_exercicio(const QString& codigo);
     QString listarExercicios();
+    QString listarExercicios_temp();
 
     QSqlDatabase m_db;
 private:

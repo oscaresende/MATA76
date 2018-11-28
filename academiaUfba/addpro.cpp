@@ -12,32 +12,29 @@ addpro::addpro(QWidget *parent, Professor *professor) :
     ui->setupUi(this);
     ui->setupUi(this);
 
-        db = new DbManager("fitnessUfba");
+    db = new DbManager("fitnessUfba");
 
-        connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
-        connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
-        connect(ui->toolButton, SIGNAL(clicked()),this, SLOT(escolher_arquivo()));        
+    connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
+    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
+    connect(ui->toolButton, SIGNAL(clicked()),this, SLOT(escolher_arquivo()));
 
+    if (professor != NULL)
+    {
+        ui->lineEdit_7->setText(professor->matricula);
+        ui->lineEdit_8->setText(professor->senha);
+        ui->lineEdit->setText(professor->nome);
+        ui->lineEdit_2->setText(professor->endereco);
+        ui->lineEdit_3->setText(professor->telefone);
+        ui->lineEdit_5->setText(professor->email);
+        ui->lineEdit_6->setText(professor->cpf);
+        ui->dateEdit->setDateTime(professor->data_nascimento);
+        ui->pushButton_2->setEnabled(false);
 
-
-
-        if (professor != NULL)
-        {
-            ui->lineEdit_7->setText(professor->matricula);
-            ui->lineEdit_8->setText(professor->senha);
-            ui->lineEdit->setText(professor->nome);
-            ui->lineEdit_2->setText(professor->endereco);
-            ui->lineEdit_3->setText(professor->telefone);
-            ui->lineEdit_5->setText(professor->email);
-            ui->lineEdit_6->setText(professor->cpf);
-            ui->dateEdit->setDateTime(professor->data_nascimento);
-            ui->pushButton_2->setEnabled(false);
-
-            imageFile.load(professor->imagem);
-            ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
-                                                                            ui->image_label->height(),
-                                                                            Qt::KeepAspectRatioByExpanding));
-        }
+        imageFile.load(professor->imagem);
+        ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
+                                                                        ui->image_label->height(),
+                                                                        Qt::KeepAspectRatioByExpanding));
+     }
 }
 
 addpro::~addpro()
@@ -60,13 +57,11 @@ void addpro::cadastrar()
     }
 
     if (!erro)
-    {
-        DbManager *manager = new DbManager("fitnessUfba");
-
+    {        
         Professor *novo = new Professor(ui->lineEdit_7->text(),ui->lineEdit_8->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
                                 ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
 
-        if(manager->addProfessor(*novo))
+        if(db->addProfessor(*novo))
         {
             mensagem.setText("Profesor cadastrado com sucesso!");
             mensagem.exec();

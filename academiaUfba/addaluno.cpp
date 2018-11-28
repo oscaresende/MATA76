@@ -18,10 +18,6 @@ AddAluno::AddAluno(QWidget *parent, Aluno *aluno) :
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
     connect(ui->toolButton, SIGNAL(clicked()),this, SLOT(escolher_arquivo()));
 
-
-
-
-
     if (aluno != NULL)
     {
         ui->lineEdit_7->setText(aluno->matricula);
@@ -60,10 +56,7 @@ void AddAluno::cadastrar()
     }
 
     if (!erro)
-    {
-        DbManager *manager = new DbManager("fitnessUfba");
-
-        //QByteArray compressed = qCompress(imageFile.bits(), imageFile.byteCount());
+    {        
         Aluno Pesquisa = db->busca_aluno(ui->lineEdit_7->text());
 
         if(Pesquisa.matricula!=""){
@@ -76,7 +69,7 @@ void AddAluno::cadastrar()
             Aluno *novo = new Aluno(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
                                     ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
 
-            if(manager->addAluno(*novo))
+            if(db->addAluno(*novo))
             {
                 mensagem.setText("Aluno cadastrado com sucesso!");
                 mensagem.exec();

@@ -47,8 +47,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::busca_aluno_por_matricula()
-{
-    DbManager *dbm = new DbManager("fitnessUfba");
+{    
     Aluno Pesquisa = dbm->busca_aluno(ui->lineEdit->text());
 
     if(Pesquisa.matricula!="")
@@ -56,14 +55,11 @@ void MainWindow::busca_aluno_por_matricula()
         AddAluno *tela2 = new AddAluno(NULL, &Pesquisa);
         tela2->setWindowTitle("Consultando aluno");
         tela2->show();    
-    }
-
-    dbm->m_db.close();
+    }    
 }
 
 void MainWindow::busca_professor_por_matricula()
-{
-    DbManager *dbm = new DbManager("fitnessUfba");
+{    
     Professor Pesquisa = dbm->busca_professor(ui->lineEdit_2->text());
 
     if(Pesquisa.matricula!="")
@@ -72,13 +68,10 @@ void MainWindow::busca_professor_por_matricula()
         tela2->setWindowTitle("Consultando professor");
         tela2->show();
     }
-
-    dbm->m_db.close();
 }
 
 void MainWindow::busca_exercicio_por_codigo()
-{
-    DbManager *dbm = new DbManager("fitnessUfba");
+{    
     exercicio Pesquisa = dbm->busca_exercicio(ui->lineEdit_3->text());
 
     if(Pesquisa.codigo!="")
@@ -87,8 +80,6 @@ void MainWindow::busca_exercicio_por_codigo()
         tela2->setWindowTitle("Consultando exercicio");
         tela2->show();
     }
-
-    dbm->m_db.close();
 }
 
 void MainWindow::abrir_tela_cadastro_aluno()

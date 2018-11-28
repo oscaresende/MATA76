@@ -10,6 +10,7 @@ addexercicio::addexercicio(QWidget *parent, exercicio *exercicio) :
     ui(new Ui::addexercicio)
 {
     ui->setupUi(this);
+    db = new DbManager("fitnessUfba");
 
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
@@ -49,12 +50,10 @@ void addexercicio::cadastrar()
     }
 
     if (!erro)
-    {
-        DbManager *manager = new DbManager("fitnessUfba");
-
+    {        
         exercicio *novo = new exercicio(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(),this->imagePath);
 
-        if(manager->addExercicio(*novo))
+        if(db->addExercicio(*novo))
         {
             mensagem.setText("Exercício cadastrado com sucesso!");
             mensagem.exec();
