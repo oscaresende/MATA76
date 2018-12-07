@@ -38,7 +38,8 @@ SOURCES += \
     treino.cpp \
     addtreino.cpp \
     removeraluno.cpp \
-    login.cpp
+    login.cpp \
+    itemtreino.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +53,8 @@ HEADERS += \
     treino.h \
     addtreino.h \
     removeraluno.h \
-    login.h
+    login.h \
+    itemtreino.h
 
 FORMS += \
         mainwindow.ui \

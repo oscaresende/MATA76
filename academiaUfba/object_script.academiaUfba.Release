@@ -12,6 +12,7 @@ INPUT(
 ./release\addtreino.o
 ./release\removeraluno.o
 ./release\login.o
+./release\itemtreino.o
 ./release\moc_mainwindow.o
 ./release\moc_addaluno.o
 ./release\moc_addpro.o

@@ -15,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    dbm = new DbManager("fitnessUfba");
+    dbm->VerificarTabelas();
+    //dbm->CarregarDados();
 
     autenticado = false;
 
@@ -35,8 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionNovo_Treino,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_treino()));
     connect(ui->actionRemover_Aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_aluno()));
 
-    ui->menuBar->setEnabled(false);
-    dbm = new DbManager("fitnessUfba");    
+    ui->menuBar->setEnabled(false);    
     ui->tableView->setVisible(false);
     //carregarTableView();
     }

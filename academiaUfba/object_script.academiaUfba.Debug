@@ -12,6 +12,7 @@ INPUT(
 ./debug\addtreino.o
 ./debug\removeraluno.o
 ./debug\login.o
+./debug\itemtreino.o
 ./debug\moc_mainwindow.o
 ./debug\moc_addaluno.o
 ./debug\moc_addpro.o

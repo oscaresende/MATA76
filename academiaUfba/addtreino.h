@@ -7,6 +7,9 @@
 #include <QSortFilterProxyModel>
 #include "QSqlRecord"
 #include "QDebug"
+#include "QMessageBox"
+#include "treino.h"
+
 
 
 namespace Ui {
@@ -24,8 +27,9 @@ private slots:
     void cancelar();
     void carregarTableViewDisponiveis();
     void carregarTableViewUsados();
+    void cadastrar();
     void adicionar_exercicio();
-    void remover_exercicio();
+    void remover_exercicio();    
 
 private:
     Ui::addTreino *ui;

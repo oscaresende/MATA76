@@ -14,6 +14,10 @@ class DbManager
 {
 public:
     DbManager(const QString& path);
+
+    void VerificarTabelas();
+    void CarregarDados();
+
     bool addAluno(const Aluno& aluno);
     Aluno busca_aluno(const QString& matricula);
     QString listarAlunos();
@@ -26,9 +30,12 @@ public:
     QString listarProfessorEMatricula();
 
     bool addExercicio(const exercicio& exercicio);
+    bool addExercicio_temp(const int& id, const QString& nome, const QString& serie, const QString& repeticao);
+    bool remExercicio_temp(const int& id);
     exercicio busca_exercicio(const QString& codigo);
     QString listarExercicios();
     QString listarExercicios_temp();
+    void limpar_tabela_temporaria();
 
     QSqlDatabase m_db;
 private:

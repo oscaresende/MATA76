@@ -10,16 +10,14 @@ class treino
 {
 public:
     treino();
-    treino(const Aluno& aluno, const Professor& professor, const QDateTime& data_inicial,
-           const QDateTime& data_final, bool& ativo, int& dias);
+    treino(const Aluno& aluno, const Professor& professor, const QDateTime& data,int& dias);
 
     int id;
     Aluno aluno;
     Professor professor;
-    QDateTime data_inicial;
-    QDateTime data_final;
-    bool ativo;
+    QDateTime data;
     int dias;
+    QList<QString> lista;
 
 };
 

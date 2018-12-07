@@ -18,7 +18,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QTableView>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
@@ -39,15 +38,14 @@ public:
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
-    QTableView *tableView;
-    QTableView *tableView_2;
     QTableWidget *tableWidget;
+    QTableWidget *tableWidget_2;
 
     void setupUi(QWidget *addTreino)
     {
         if (addTreino->objectName().isEmpty())
             addTreino->setObjectName(QStringLiteral("addTreino"));
-        addTreino->resize(669, 512);
+        addTreino->resize(780, 589);
         QIcon icon;
         icon.addFile(QStringLiteral("icone.png"), QSize(), QIcon::Normal, QIcon::Off);
         addTreino->setWindowIcon(icon);
@@ -77,25 +75,22 @@ public:
         label_5->setGeometry(QRect(10, 160, 55, 16));
         pushButton = new QPushButton(addTreino);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(240, 470, 93, 28));
+        pushButton->setGeometry(QRect(280, 550, 93, 28));
         pushButton_2 = new QPushButton(addTreino);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(340, 470, 93, 28));
+        pushButton_2->setGeometry(QRect(380, 550, 93, 28));
         pushButton_3 = new QPushButton(addTreino);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(310, 270, 41, 28));
+        pushButton_3->setGeometry(QRect(360, 350, 41, 28));
         pushButton_4 = new QPushButton(addTreino);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(310, 310, 41, 28));
-        tableView = new QTableView(addTreino);
-        tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(20, 240, 256, 192));
-        tableView_2 = new QTableView(addTreino);
-        tableView_2->setObjectName(QStringLiteral("tableView_2"));
-        tableView_2->setGeometry(QRect(380, 240, 256, 192));
+        pushButton_4->setGeometry(QRect(360, 390, 41, 28));
         tableWidget = new QTableWidget(addTreino);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(370, 20, 256, 192));
+        tableWidget->setGeometry(QRect(10, 240, 341, 281));
+        tableWidget_2 = new QTableWidget(addTreino);
+        tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
+        tableWidget_2->setGeometry(QRect(410, 240, 361, 281));
 
         retranslateUi(addTreino);
 
