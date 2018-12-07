@@ -44,13 +44,38 @@ void addTreino::cancelar()
 
 void addTreino::carregarTableViewDisponiveis()
 {
-    model3 = new QSqlQueryModel(this);
-    model3->setQuery(db->listarExercicios(),db->m_db);
-    proxyModel = new QSortFilterProxyModel(this);
-    proxyModel->setSourceModel(model3);
-    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    ui->tableView->setModel(proxyModel);
-    ui->tableView->show();
+    //model3 = new QSqlQueryModel(this);
+    //model3->setQuery(db->listarExercicios(),db->m_db);
+    //proxyModel = new QSortFilterProxyModel(this);
+    //proxyModel->setSourceModel(model3);
+    //proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    //ui->tableView->setModel(proxyModel);
+    //ui->tableView->show();
+
+    ui->tableWidget->setColumnCount(2);
+    ui->tableWidget->setShowGrid(true);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList()
+                                                   << trUtf8("ID")
+                                                   << trUtf8("NOME"));
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
+
+
+    QSqlQuery query(db->listarExercicios());
+    QSqlRecord rec = query.record();
+
+    int i = 0;
+
+    while (query.next())
+    {
+        ui->tableWidget->insertRow(i);
+        ui->tableWidget->setItem(i,0,new QTableWidgetItem(query.value(rec.indexOf("ID_EXERCICIO")).toString()));
+        ui->tableWidget->setItem(i,1,new QTableWidgetItem(query.value(rec.indexOf("NOME")).toString()));
+        i++;
+    }
+    ui->tableWidget->resizeColumnsToContents();
+    //ui->tableWidget->hideColumn(0);
 }
 
 void addTreino::carregarTableViewUsados()
@@ -67,6 +92,8 @@ void addTreino::carregarTableViewUsados()
 void addTreino::adicionar_exercicio()
 {
 
+    qDebug() << ui->tableWidget->selectedItems().value(0)->text()
+             << ui->tableWidget->selectedItems().value(1)->text();
 
 }
 

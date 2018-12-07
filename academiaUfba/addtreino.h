@@ -5,6 +5,9 @@
 #include "dbmanager.h"
 #include "QSqlQueryModel"
 #include <QSortFilterProxyModel>
+#include "QSqlRecord"
+#include "QDebug"
+
 
 namespace Ui {
 class addTreino;
