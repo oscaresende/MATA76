@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Page Two</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label stacked>Usuário</ion-label>
+        <ion-input id="editText" type="text" [(ngModel)]="editText"></ion-input>
+      </ion-item>
+      <ion-item>
+          <button ion-button id="btnConfirmar" (click)="confirmar()">CONFIRMAR</button>
+      </ion-item>
+      <ion-item>
+          <button ion-button id="btnCancelar" (click)="cancelar()">CANCELAR</button>
+      </ion-item>
+</ion-content>
