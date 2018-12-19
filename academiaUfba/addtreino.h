@@ -9,6 +9,8 @@
 #include "QDebug"
 #include "QMessageBox"
 #include "treino.h"
+#include "exercicio.h"
+
 
 
 

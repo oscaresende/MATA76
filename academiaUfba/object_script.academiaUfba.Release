@@ -16,6 +16,8 @@ INPUT(
 ./release\removerexercicio.o
 ./release\removerprofessor.o
 ./release\atualizaraluno.o
+./release\atualizarprofessor.o
+./release\atualizarexercicio.o
 ./release\moc_mainwindow.o
 ./release\moc_addaluno.o
 ./release\moc_addpro.o
@@ -26,4 +28,6 @@ INPUT(
 ./release\moc_removerexercicio.o
 ./release\moc_removerprofessor.o
 ./release\moc_atualizaraluno.o
+./release\moc_atualizarprofessor.o
+./release\moc_atualizarexercicio.o
 );

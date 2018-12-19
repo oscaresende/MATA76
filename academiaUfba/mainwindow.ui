@@ -335,6 +335,7 @@
     </property>
     <addaction name="actionNovo_Exerc_cio"/>
     <addaction name="actionRemover_Exerc_cio"/>
+    <addaction name="actionAtualizar_Exerc_cio"/>
    </widget>
    <widget class="QMenu" name="menuProfessor">
     <property name="title">
@@ -342,6 +343,7 @@
     </property>
     <addaction name="actionNovo_Professor_2"/>
     <addaction name="actionRemover_Professor"/>
+    <addaction name="actionAtualizar_Professor"/>
    </widget>
    <addaction name="menuCadastro"/>
    <addaction name="menuProfessor"/>
@@ -395,7 +397,17 @@
   </action>
   <action name="actionAtualizar">
    <property name="text">
-    <string>Atualizar </string>
+    <string>Atualizar Aluno</string>
+   </property>
+  </action>
+  <action name="actionAtualizar_Professor">
+   <property name="text">
+    <string>Atualizar Professor</string>
+   </property>
+  </action>
+  <action name="actionAtualizar_Exerc_cio">
+   <property name="text">
+    <string>Atualizar Exercício</string>
    </property>
   </action>
  </widget>

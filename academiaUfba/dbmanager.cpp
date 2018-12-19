@@ -351,9 +351,9 @@ bool DbManager::atualizarAluno(const Aluno& aluno)
     QSqlQuery query;
 
     query.clear();
-    query.prepare("UPDATE ALUNO SET MATRICULA =:MATRICULA, NOME = :NOME, ENDERECO = :ENDERECO, EMAIL = :EMAIL, DATA_NASCIMENTO = :DATA_NASCIMENTO,"
+    query.prepare("UPDATE ALUNO SET NOME = :NOME, ENDERECO = :ENDERECO, EMAIL = :EMAIL, DATA_NASCIMENTO = :DATA_NASCIMENTO,"
                   "CPF = :CPF, TELEFONE = :TELEFONE, IMAGEM = :IMAGEM "
-                  "WHERE ID_ALUNO = :ID_ALUNO");
+                  "WHERE MATRICULA = :MATRICULA");
     query.bindValue(":MATRICULA", aluno.matricula);
     query.bindValue(":NOME", aluno.nome);
     query.bindValue(":ENDERECO", aluno.endereco);
@@ -362,7 +362,6 @@ bool DbManager::atualizarAluno(const Aluno& aluno)
     query.bindValue(":CPF", aluno.cpf);
     query.bindValue(":TELEFONE", aluno.telefone);
     query.bindValue(":IMAGEM", aluno.imagem);
-    query.bindValue(":ID_ALUNO", aluno.id);
 
     if(query.exec())
     {
@@ -410,6 +409,39 @@ bool DbManager::addProfessor(const Professor& professor)
     return success;
 }
 
+bool DbManager::atualizarProfessor(const Professor& professor)
+{
+    bool success = false;
+    QSqlQuery query;
+
+    query.clear();
+    query.prepare("UPDATE PROFESSOR SET NOME = :NOME, ENDERECO = :ENDERECO, EMAIL = :EMAIL, DATA_NASCIMENTO = :DATA_NASCIMENTO,"
+                  "CPF = :CPF, TELEFONE = :TELEFONE, SENHA = :SENHA, IMAGEM = :IMAGEM "
+                  "WHERE MATRICULA = :MATRICULA");
+    query.bindValue(":MATRICULA", professor.matricula);
+    query.bindValue(":NOME", professor.nome);
+    query.bindValue(":ENDERECO", professor.endereco);
+    query.bindValue(":EMAIL", professor.email);
+    query.bindValue(":DATA_NASCIMENTO", professor.data_nascimento);
+    query.bindValue(":CPF", professor.cpf);
+    query.bindValue(":TELEFONE", professor.telefone);
+    query.bindValue(":IMAGEM", professor.imagem);
+    query.bindValue(":SENHA", professor.senha);
+
+
+    if(query.exec())
+    {
+        success = true;
+        qDebug() << "deu certo atualizar";
+    }
+    else
+    {
+        qDebug() << "deu errado atualizar";
+    }
+
+    return success;
+}
+
 bool DbManager::addExercicio(const exercicio& exercicio)
 {
     bool success = false;
@@ -434,6 +466,32 @@ bool DbManager::addExercicio(const exercicio& exercicio)
     {
         qDebug() << "deu errado inserir";
         //<< query.lastError();
+    }
+
+    return success;
+}
+
+bool DbManager::atualizarExercicio(const exercicio& exercicio)
+{
+    bool success = false;
+    QSqlQuery query;
+
+    query.clear();
+    query.prepare("UPDATE EXERCICIO SET NOME = :NOME, DESCRICAO = :DESCRICAO, IMAGEM = :IMAGEM "
+                  "WHERE CODIGO = :CODIGO");
+    query.bindValue(":NOME", exercicio.nome);
+    query.bindValue(":DESCRICAO", exercicio.descricao);
+    query.bindValue(":IMAGEM", exercicio.imagem);
+    query.bindValue(":CODIGO", exercicio.codigo);
+
+    if(query.exec())
+    {
+        success = true;
+        qDebug() << "deu certo atualizar";
+    }
+    else
+    {
+        qDebug() << "deu errado atualizar";
     }
 
     return success;
@@ -482,6 +540,68 @@ bool DbManager::remExercicio_temp(const int &id)
     else
     {
         qDebug() << "deu errado remover";
+    }
+
+    return success;
+}
+
+
+bool DbManager::addTreino(const treino& treino)
+{
+    bool success = false;
+    QSqlQuery query;
+    int i, max_treino = 0;
+
+    query.clear();
+    query.prepare("INSERT INTO TREINO(ID_ALUNO, ID_PROFESSOR, DATA, QUANTIDADE_DIAS) "
+                  "VALUES (:ID_ALUNO, :ID_PROFESSOR, :DATA, :QUANTIDADE_DIAS)");
+    query.bindValue(":ID_ALUNO", treino.aluno.id);
+    query.bindValue(":ID_PROFESSOR", treino.professor.id);
+    query.bindValue(":DATA", treino.data);
+    query.bindValue(":QUANTIDADE_DIAS", treino.dias);
+
+    if(query.exec())
+    {
+        success = true;
+        qDebug() << "deu certo inserir o treino";
+    }
+    else
+    {
+        qDebug() << "deu errado inserir o treino";
+
+    }
+
+    QSqlQuery query_aux(m_db);
+    query.prepare("SELECT MAX(ID_TREINO) FROM TREINO");
+
+    if (query.exec())
+    {
+        while (query.next())
+        {
+            max_treino = query.value(0).toInt();
+        }
+    }
+
+    for (i=0; i<treino.exercicios.length(); i++)
+    {
+        query.clear();
+        query.prepare("INSERT INTO ITENS_TREINO(ID_TREINO, ID_EXERCICIO, SERIE, REPETICAO) "
+                      "VALUES (:ID_TREINO, :ID_EXERCICIO, :SERIE, :REPETICAO)");
+        query.bindValue(":ID_TREINO", max_treino);
+        query.bindValue(":ID_EXERCICIO", treino.exercicios[i].id);
+        query.bindValue(":SERIE", 3);
+        query.bindValue(":REPETICAO", 12);
+
+        if(query.exec())
+        {
+            success = true;
+            qDebug() << "deu certo inserir itens treino";
+        }
+        else
+        {
+            qDebug() << "deu errado inserir itens treino";
+
+        }
     }
 
     return success;

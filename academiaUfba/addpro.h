@@ -14,7 +14,7 @@ class addpro : public QWidget
     Q_OBJECT
 
 public:
-    explicit addpro(QWidget *parent = nullptr, Professor *professor = nullptr);
+    explicit addpro(QWidget *parent = nullptr, Professor *professor = nullptr, const QString& operacao = "");
     ~addpro();
 
 private slots:
@@ -27,6 +27,7 @@ private:
     QString imagePath;
     QImage imageFile;
     DbManager *db;
+    QString op;
 };
 
 #endif // ADDPRO_H

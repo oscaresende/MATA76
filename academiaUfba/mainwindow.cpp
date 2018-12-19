@@ -40,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionRemover_Exerc_cio,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_exercicio()));
     connect(ui->actionRemover_Professor,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_professor()));
     connect(ui->actionAtualizar,SIGNAL(triggered()),this, SLOT(abrir_tela_atualizar_aluno()));
+    connect(ui->actionAtualizar_Professor,SIGNAL(triggered()),this, SLOT(abrir_tela_atualizar_professor()));
+    connect(ui->actionAtualizar_Exerc_cio,SIGNAL(triggered()),this, SLOT(abrir_tela_atualizar_exercicio()));
 
     ui->menuBar->setEnabled(false);    
     ui->tableView->setVisible(false);
@@ -144,6 +146,20 @@ void MainWindow::abrir_tela_atualizar_aluno()
     atuInstAluno = new atualizarAluno();
     atuInstAluno->setWindowTitle("Pesquisa de Aluno");
     atuInstAluno->show();
+}
+
+void MainWindow::abrir_tela_atualizar_professor()
+{
+    atuInstProfessor = new atualizarProfessor();
+    atuInstProfessor->setWindowTitle("Pesquisa de Professor");
+    atuInstProfessor->show();
+}
+
+void MainWindow::abrir_tela_atualizar_exercicio()
+{
+    atuInstExercicio = new atualizarExercicio();
+    atuInstExercicio->setWindowTitle("Pesquisa de Exercício");
+    atuInstExercicio->show();
 }
 
 

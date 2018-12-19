@@ -29,10 +29,18 @@ AddAluno::AddAluno(QWidget *parent, Aluno *aluno, const QString& operacao) :
         ui->lineEdit_6->setText(aluno->cpf);
         ui->dateEdit->setDateTime(aluno->data_nascimento);
 
+
+
         if (op != "ATUALIZAR")
         {
             ui->pushButton_2->setEnabled(false);
         }
+        else
+        {
+            ui->lineEdit_7->setEnabled(false);
+            ui->pushButton_2->setText("Atualizar");
+        }
+
 
         imageFile.load(aluno->imagem);
         ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),

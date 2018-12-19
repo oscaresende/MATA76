@@ -4,10 +4,10 @@
 #include "QDateTime"
 #include "QSqlDatabase"
 #include "QSqlQuery"
-
 #include "aluno.h"
 #include "professor.h"
 #include "exercicio.h"
+#include "treino.h"
 
 
 class DbManager
@@ -26,12 +26,14 @@ public:
     bool remover_aluno(const QString& matricula);
 
     bool addProfessor(const Professor& professor);
+    bool atualizarProfessor(const Professor& professor);
     Professor busca_professor(const QString& matricula);
     QString listarProfessores();
     QString listarProfessorEMatricula();
     bool remover_professor(const QString& matricula);
 
     bool addExercicio(const exercicio& exercicio);
+    bool atualizarExercicio(const exercicio& exercicio);
     bool remover_exercicio(const QString& codigo);
     QString listarExercicioECodigo();
     bool addExercicio_temp(const int& id, const QString& nome, const QString& serie, const QString& repeticao);
@@ -40,6 +42,8 @@ public:
     QString listarExercicios();
     QString listarExercicios_temp();
     void limpar_tabela_temporaria();
+
+    bool addTreino(const treino& treino);
 
     QSqlDatabase m_db;
 private:

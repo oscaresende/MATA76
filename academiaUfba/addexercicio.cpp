@@ -5,7 +5,7 @@
 #include "QMessageBox"
 #include "QFileDialog"
 
-addexercicio::addexercicio(QWidget *parent, exercicio *exercicio) :
+addexercicio::addexercicio(QWidget *parent, exercicio *exercicio, const QString& operacao) :
     QWidget(parent),
     ui(new Ui::addexercicio)
 {
@@ -13,6 +13,7 @@ addexercicio::addexercicio(QWidget *parent, exercicio *exercicio) :
     db = new DbManager("fitnessUfba");
     moviePlayer = new QMovie();
     imagePath = "";
+    op = operacao;
 
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));    
@@ -26,9 +27,19 @@ addexercicio::addexercicio(QWidget *parent, exercicio *exercicio) :
     {
         ui->lineEdit_7->setText(exercicio->codigo);
         ui->lineEdit->setText(exercicio->nome);
-        ui->lineEdit_2->setText(exercicio->descricao);
-        ui->pushButton_2->setEnabled(false);
+        ui->lineEdit_2->setText(exercicio->descricao);        
         imagePath = exercicio->imagem;
+
+        if (op != "ATUALIZAR")
+        {
+            ui->pushButton_2->setEnabled(false);
+        }
+        else
+        {
+            ui->lineEdit_7->setEnabled(false);
+            ui->pushButton_2->setText("Atualizar");
+        }
+
 
         if (imagePath != "")
         {
@@ -61,18 +72,44 @@ void addexercicio::cadastrar()
 
     if (!erro)
     {        
-        exercicio *novo = new exercicio(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(),this->imagePath);
+        exercicio Pesquisa = db->busca_exercicio(ui->lineEdit_7->text());
 
-        if(db->addExercicio(*novo))
-        {
-            mensagem.setText("Exercício cadastrado com sucesso!");
+        if((Pesquisa.codigo != "") && (op == "INCLUIR")){
+            mensagem.setText("Código existente!");
             mensagem.exec();
-            this->close();
         }
         else
         {
-            mensagem.setText("Inclusão não realizada.");
-            mensagem.exec();
+            exercicio *novo = new exercicio(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(),this->imagePath);
+
+            if (op == "INCLUIR")
+            {
+                if(db->addExercicio(*novo))
+                {
+                    mensagem.setText("Exercício cadastrado com sucesso!");
+                    mensagem.exec();
+                    this->close();
+                }
+                else
+                {
+                    mensagem.setText("Inclusão não realizada.");
+                    mensagem.exec();
+                }
+            }
+            else
+            {
+                if(db->atualizarExercicio(*novo))
+                {
+                    mensagem.setText("Exercício atualizado com sucesso!");
+                    mensagem.exec();
+                    this->close();
+                }
+                else
+                {
+                    mensagem.setText("Atualização não realizada.");
+                    mensagem.exec();
+                }
+            }
         }
     }
 }

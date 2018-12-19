@@ -5,7 +5,7 @@
 #include "QMessageBox"
 #include "QFileDialog"
 
-addpro::addpro(QWidget *parent, Professor *professor) :
+addpro::addpro(QWidget *parent, Professor *professor, const QString& operacao) :
     QWidget(parent),
     ui(new Ui::addpro)
 {
@@ -13,6 +13,7 @@ addpro::addpro(QWidget *parent, Professor *professor) :
     ui->setupUi(this);
 
     db = new DbManager("fitnessUfba");
+    op = operacao;
 
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
@@ -27,8 +28,17 @@ addpro::addpro(QWidget *parent, Professor *professor) :
         ui->lineEdit_3->setText(professor->telefone);
         ui->lineEdit_5->setText(professor->email);
         ui->lineEdit_6->setText(professor->cpf);
-        ui->dateEdit->setDateTime(professor->data_nascimento);
-        ui->pushButton_2->setEnabled(false);
+        ui->dateEdit->setDateTime(professor->data_nascimento);        
+
+        if (op != "ATUALIZAR")
+        {
+            ui->pushButton_2->setEnabled(false);
+        }
+        else
+        {
+            ui->lineEdit_7->setEnabled(false);
+            ui->pushButton_2->setText("Atualizar");
+        }
 
         imageFile.load(professor->imagem);
         ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
@@ -58,19 +68,47 @@ void addpro::cadastrar()
 
     if (!erro)
     {        
-        Professor *novo = new Professor(ui->lineEdit_7->text(),ui->lineEdit_8->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
-                                ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
+        Professor Pesquisa = db->busca_professor(ui->lineEdit_7->text());
 
-        if(db->addProfessor(*novo))
-        {
-            mensagem.setText("Profesor cadastrado com sucesso!");
+        if((Pesquisa.matricula!="") && (op == "INCLUIR")){
+            mensagem.setText("Matricula existente!");
             mensagem.exec();
-            this->close();
         }
         else
         {
-            mensagem.setText("Inclusão não realizada.");
-            mensagem.exec();
+            Professor *novo = new Professor(ui->lineEdit_7->text(),ui->lineEdit_8->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
+                                            ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
+
+            if (op == "INCLUIR")
+            {
+                if(db->addProfessor(*novo))
+                {
+                    mensagem.setText("Profesor cadastrado com sucesso!");
+                    mensagem.exec();
+                    this->close();
+                }
+                else
+                {
+                    mensagem.setText("Inclusão não realizada.");
+                    mensagem.exec();
+                }
+            }
+            else
+            {
+                if(db->atualizarProfessor(*novo))
+                {
+                    mensagem.setText("Profesor atualizado com sucesso!");
+                    mensagem.exec();
+                    this->close();
+                }
+                else
+                {
+                    mensagem.setText("Atualização não realizada.");
+                    mensagem.exec();
+                }
+
+            }
+
         }
     }
 }

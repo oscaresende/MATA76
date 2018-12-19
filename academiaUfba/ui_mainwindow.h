@@ -39,6 +39,8 @@ public:
     QAction *actionRemover_Professor;
     QAction *actionRemover_Aluno;
     QAction *actionAtualizar;
+    QAction *actionAtualizar_Professor;
+    QAction *actionAtualizar_Exerc_cio;
     QWidget *centralWidget;
     QGroupBox *groupBox;
     QLineEdit *lineEdit;
@@ -97,6 +99,10 @@ public:
         actionRemover_Aluno->setObjectName(QStringLiteral("actionRemover_Aluno"));
         actionAtualizar = new QAction(MainWindow);
         actionAtualizar->setObjectName(QStringLiteral("actionAtualizar"));
+        actionAtualizar_Professor = new QAction(MainWindow);
+        actionAtualizar_Professor->setObjectName(QStringLiteral("actionAtualizar_Professor"));
+        actionAtualizar_Exerc_cio = new QAction(MainWindow);
+        actionAtualizar_Exerc_cio->setObjectName(QStringLiteral("actionAtualizar_Exerc_cio"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         groupBox = new QGroupBox(centralWidget);
@@ -184,8 +190,10 @@ public:
         menuTreinos->addAction(actionNovo_Treino);
         menuConfigura_es->addAction(actionNovo_Exerc_cio);
         menuConfigura_es->addAction(actionRemover_Exerc_cio);
+        menuConfigura_es->addAction(actionAtualizar_Exerc_cio);
         menuProfessor->addAction(actionNovo_Professor_2);
         menuProfessor->addAction(actionRemover_Professor);
+        menuProfessor->addAction(actionAtualizar_Professor);
         mainToolBar->addSeparator();
 
         retranslateUi(MainWindow);
@@ -203,7 +211,9 @@ public:
         actionRemover_Exerc_cio->setText(QApplication::translate("MainWindow", "Remover Exerc\303\255cio", nullptr));
         actionRemover_Professor->setText(QApplication::translate("MainWindow", "Remover Professor", nullptr));
         actionRemover_Aluno->setText(QApplication::translate("MainWindow", "Remover Aluno", nullptr));
-        actionAtualizar->setText(QApplication::translate("MainWindow", "Atualizar ", nullptr));
+        actionAtualizar->setText(QApplication::translate("MainWindow", "Atualizar Aluno", nullptr));
+        actionAtualizar_Professor->setText(QApplication::translate("MainWindow", "Atualizar Professor", nullptr));
+        actionAtualizar_Exerc_cio->setText(QApplication::translate("MainWindow", "Atualizar Exerc\303\255cio", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Pesquisar Aluno", nullptr));
         label->setText(QApplication::translate("MainWindow", "Matricula", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "OK", nullptr));

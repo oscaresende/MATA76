@@ -13,6 +13,8 @@
 #include "removerexercicio.h"
 #include "removerprofessor.h"
 #include "atualizaraluno.h"
+#include "atualizarprofessor.h"
+#include "atualizarexercicio.h"
 #include "login.h"
 
 
@@ -43,6 +45,8 @@ private slots:
     void abrir_tela_remover_exercicio();
     void abrir_tela_remover_professor();
     void abrir_tela_atualizar_aluno();
+    void abrir_tela_atualizar_professor();
+    void abrir_tela_atualizar_exercicio();
     void carregarTableView();
     void logar();
 
@@ -62,6 +66,8 @@ private:
     removerExercicio * remInstExercicio;
     removerProfessor * remInstProfessor;
     atualizarAluno * atuInstAluno;
+    atualizarProfessor * atuInstProfessor;
+    atualizarExercicio * atuInstExercicio;
     login * addInstlogin;
     bool autenticado;
 };

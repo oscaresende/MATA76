@@ -113,7 +113,7 @@ void addTreino::cadastrar()
     bool erro;
     erro = false;
     QMessageBox mensagem;
-    mensagem.setWindowTitle("Alerta");
+    mensagem.setWindowTitle("Alerta");    
 
     if ((ui->comboBox->currentText() == "") || (ui->comboBox_2->currentText() == ""))
     {
@@ -123,13 +123,35 @@ void addTreino::cadastrar()
     }
 
     if (!erro)
-    {
-        /*treino *novo = new treino(ui->lineEdit_7->text(),ui->lineEdit_8->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
-                                ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
+    {     
+        treino *novo_treino = new treino();
+        Aluno Pesquisa_Aluno = db->busca_aluno(ui->comboBox->currentText());
+        Professor Pesquisa_Professor = db->busca_professor(ui->comboBox_2->currentText());
 
-        if(db->addProfessor(*novo))
+        novo_treino->aluno = Pesquisa_Aluno;
+        novo_treino->professor = Pesquisa_Professor;
+        novo_treino->dias = ui->lineEdit->text().toInt();
+        novo_treino->data = ui->dateEdit->dateTime();
+
+        QSqlQuery query(db->m_db);
+        query.prepare("SELECT CODIGO FROM TEMP_EXERCICIO");
+
+        if (query.exec())
         {
-            mensagem.setText("Profesor cadastrado com sucesso!");
+            while (query.next())
+            {
+                exercicio Pesquisa_Exercicio = db->busca_exercicio(query.value(0).toString());
+
+                if(Pesquisa_Exercicio.codigo!="")
+                {
+                    novo_treino->exercicios.append(Pesquisa_Exercicio);
+                }
+            }
+        }
+
+        if(db->addTreino(*novo_treino))
+        {
+            mensagem.setText("Treino cadastrado com sucesso!");
             mensagem.exec();
             this->close();
         }
@@ -137,7 +159,7 @@ void addTreino::cadastrar()
         {
             mensagem.setText("Inclusão não realizada.");
             mensagem.exec();
-        }*/
+        }
     }
 }
 

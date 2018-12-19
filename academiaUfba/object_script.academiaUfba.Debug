@@ -16,6 +16,8 @@ INPUT(
 ./debug\removerexercicio.o
 ./debug\removerprofessor.o
 ./debug\atualizaraluno.o
+./debug\atualizarprofessor.o
+./debug\atualizarexercicio.o
 ./debug\moc_mainwindow.o
 ./debug\moc_addaluno.o
 ./debug\moc_addpro.o
@@ -26,4 +28,6 @@ INPUT(
 ./debug\moc_removerexercicio.o
 ./debug\moc_removerprofessor.o
 ./debug\moc_atualizaraluno.o
+./debug\moc_atualizarprofessor.o
+./debug\moc_atualizarexercicio.o
 );

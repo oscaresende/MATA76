@@ -43,7 +43,9 @@ SOURCES += \
     itemtreino.cpp \
     removerexercicio.cpp \
     removerprofessor.cpp \
-    atualizaraluno.cpp
+    atualizaraluno.cpp \
+    atualizarprofessor.cpp \
+    atualizarexercicio.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -61,7 +63,9 @@ HEADERS += \
     itemtreino.h \
     removerexercicio.h \
     removerprofessor.h \
-    atualizaraluno.h
+    atualizaraluno.h \
+    atualizarprofessor.h \
+    atualizarexercicio.h
 
 FORMS += \
         mainwindow.ui \
@@ -73,7 +77,9 @@ FORMS += \
     login.ui \
     removerexercicio.ui \
     removerprofessor.ui \
-    atualizaraluno.ui
+    atualizaraluno.ui \
+    atualizarprofessor.ui \
+    atualizarexercicio.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
