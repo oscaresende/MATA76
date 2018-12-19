@@ -37,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionNovo_Exerc_cio,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_exercicio()));
     connect(ui->actionNovo_Treino,SIGNAL(triggered()),this, SLOT(abrir_tela_cadastro_treino()));
     connect(ui->actionRemover_Aluno,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_aluno()));
+    connect(ui->actionRemover_Exerc_cio,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_exercicio()));
+    connect(ui->actionRemover_Professor,SIGNAL(triggered()),this, SLOT(abrir_tela_remover_professor()));
+    connect(ui->actionAtualizar,SIGNAL(triggered()),this, SLOT(abrir_tela_atualizar_aluno()));
 
     ui->menuBar->setEnabled(false);    
     ui->tableView->setVisible(false);
@@ -54,7 +57,7 @@ void MainWindow::busca_aluno_por_matricula()
 
     if(Pesquisa.matricula!="")
     {
-        AddAluno *tela2 = new AddAluno(NULL, &Pesquisa);
+        AddAluno *tela2 = new AddAluno(NULL, &Pesquisa, "CONSULTA");
         tela2->setWindowTitle("Consultando aluno");
         tela2->show();    
     }    
@@ -119,8 +122,30 @@ void MainWindow::abrir_tela_remover_aluno()
     remInstAluno = new removeraluno();
     remInstAluno->setWindowTitle("Remoção de Aluno");
     remInstAluno->show();
-    connect(remInstAluno, SIGNAL(recarrega()), this, SLOT( carregarTableView()));
+    //connect(remInstAluno, SIGNAL(recarrega()), this, SLOT( carregarTableView()));
 }
+
+void MainWindow::abrir_tela_remover_exercicio()
+{
+    remInstExercicio = new removerExercicio();
+    remInstExercicio->setWindowTitle("Remoção de Exercício");
+    remInstExercicio->show();
+}
+
+void MainWindow::abrir_tela_remover_professor()
+{
+    remInstProfessor = new removerProfessor();
+    remInstProfessor->setWindowTitle("Remoção de Professor");
+    remInstProfessor->show();
+}
+
+void MainWindow::abrir_tela_atualizar_aluno()
+{
+    atuInstAluno = new atualizarAluno();
+    atuInstAluno->setWindowTitle("Pesquisa de Aluno");
+    atuInstAluno->show();
+}
+
 
 void MainWindow::carregarTableView()
 {

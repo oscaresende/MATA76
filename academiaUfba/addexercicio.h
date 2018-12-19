@@ -4,6 +4,12 @@
 #include <QWidget>
 #include "exercicio.h"
 #include "dbmanager.h"
+#include <QMovie>
+#include <QVideoWidget>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QFileDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class addexercicio;
@@ -19,13 +25,22 @@ public:
 private slots:
     void cadastrar();
     void cancelar();
-    void escolher_arquivo();
+    void openMovie();
+    void changeSliderNumber ();
+    void play();
+    void pause();
+
+signals:
+    void pathChanged();
 
 private:
-    Ui::addexercicio *ui;
-    QImage imageFile;
+    Ui::addexercicio *ui;    
     QString imagePath;
     DbManager *db;
+    QMovie *moviePlayer;
+    QMediaPlayer *mediaPlayer;
+    QMediaPlaylist *playList;
+    QMessageBox *msg;
 };
 
 #endif // ADDEXERCICIO_H

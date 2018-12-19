@@ -19,6 +19,7 @@ public:
     void CarregarDados();
 
     bool addAluno(const Aluno& aluno);
+    bool atualizarAluno(const Aluno& aluno);
     Aluno busca_aluno(const QString& matricula);
     QString listarAlunos();
     QString listarAlunoEMatricula();
@@ -28,8 +29,11 @@ public:
     Professor busca_professor(const QString& matricula);
     QString listarProfessores();
     QString listarProfessorEMatricula();
+    bool remover_professor(const QString& matricula);
 
     bool addExercicio(const exercicio& exercicio);
+    bool remover_exercicio(const QString& codigo);
+    QString listarExercicioECodigo();
     bool addExercicio_temp(const int& id, const QString& nome, const QString& serie, const QString& repeticao);
     bool remExercicio_temp(const int& id);
     exercicio busca_exercicio(const QString& codigo);

@@ -14,7 +14,7 @@ class AddAluno : public QWidget
     Q_OBJECT
 
 public:
-    explicit AddAluno(QWidget *parent = nullptr, Aluno *aluno = nullptr);
+    explicit AddAluno(QWidget *parent = nullptr, Aluno *aluno = nullptr, const QString& operacao = "");
     ~AddAluno();
 private slots:
     void cadastrar();
@@ -29,6 +29,7 @@ private:
     QImage imageFile;
     QString imagePath;
     DbManager *db;
+    QString op;
 
 };
 

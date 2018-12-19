@@ -10,6 +10,9 @@
 #include "addexercicio.h"
 #include "addtreino.h"
 #include "removeraluno.h"
+#include "removerexercicio.h"
+#include "removerprofessor.h"
+#include "atualizaraluno.h"
 #include "login.h"
 
 
@@ -37,6 +40,9 @@ private slots:
     void abrir_tela_cadastro_exercicio();
     void abrir_tela_cadastro_treino();
     void abrir_tela_remover_aluno();
+    void abrir_tela_remover_exercicio();
+    void abrir_tela_remover_professor();
+    void abrir_tela_atualizar_aluno();
     void carregarTableView();
     void logar();
 
@@ -53,6 +59,9 @@ private:
     addexercicio *addInstExercicio;
     addTreino *addInstTreino;
     removeraluno * remInstAluno;
+    removerExercicio * remInstExercicio;
+    removerProfessor * remInstProfessor;
+    atualizarAluno * atuInstAluno;
     login * addInstlogin;
     bool autenticado;
 };

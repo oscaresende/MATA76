@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT       += sql
+QT       += core gui multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,7 +40,10 @@ SOURCES += \
     addtreino.cpp \
     removeraluno.cpp \
     login.cpp \
-    itemtreino.cpp
+    itemtreino.cpp \
+    removerexercicio.cpp \
+    removerprofessor.cpp \
+    atualizaraluno.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -54,7 +58,10 @@ HEADERS += \
     addtreino.h \
     removeraluno.h \
     login.h \
-    itemtreino.h
+    itemtreino.h \
+    removerexercicio.h \
+    removerprofessor.h \
+    atualizaraluno.h
 
 FORMS += \
         mainwindow.ui \
@@ -63,7 +70,10 @@ FORMS += \
     addexercicio.ui \
     addtreino.ui \
     removeraluno.ui \
-    login.ui
+    login.ui \
+    removerexercicio.ui \
+    removerprofessor.ui \
+    atualizaraluno.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

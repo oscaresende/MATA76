@@ -131,10 +131,56 @@ QString DbManager::listarAlunoEMatricula()
     return retorno;
 }
 
+QString DbManager::listarExercicioECodigo()
+{
+    QString retorno = "SELECT CODIGO, NOME FROM EXERCICIO";
+    return retorno;
+}
+
 bool DbManager::remover_aluno(const QString& matricula)
 {
     QSqlQuery query;
     query.prepare ("DELETE FROM ALUNO WHERE MATRICULA = :MATRICULA");
+
+    query.bindValue(":MATRICULA", matricula);
+
+    if (query.exec())
+    {
+        qDebug() << "A remoção deu certo!";
+        return true;
+    }
+
+    else
+    {
+        qDebug() << "A remoção falhou!";
+        return false;
+    }
+}
+
+bool DbManager::remover_exercicio(const QString& codigo)
+{
+    QSqlQuery query;
+    query.prepare ("DELETE FROM EXERCICIO WHERE CODIGO = :CODIGO");
+
+    query.bindValue(":CODIGO", codigo);
+
+    if (query.exec())
+    {
+        qDebug() << "A remoção deu certo!";
+        return true;
+    }
+
+    else
+    {
+        qDebug() << "A remoção falhou!";
+        return false;
+    }
+}
+
+bool DbManager::remover_professor(const QString& matricula)
+{
+    QSqlQuery query;
+    query.prepare ("DELETE FROM PROFESSOR WHERE MATRICULA = :MATRICULA");
 
     query.bindValue(":MATRICULA", matricula);
 
@@ -159,7 +205,7 @@ QString DbManager::listarProfessores()
 
 QString DbManager::listarProfessorEMatricula()
 {
-    QString retorno = "SELECT ID_PROFESSOR, NOME FROM PROFESSOR";
+    QString retorno = "SELECT MATRICULA, NOME FROM PROFESSOR";
     return retorno;
 }
 
@@ -294,6 +340,38 @@ bool DbManager::addAluno(const Aluno& aluno)
     else
     {
         qDebug() << "deu errado inserir";
+    }
+
+    return success;
+}
+
+bool DbManager::atualizarAluno(const Aluno& aluno)
+{
+    bool success = false;
+    QSqlQuery query;
+
+    query.clear();
+    query.prepare("UPDATE ALUNO SET MATRICULA =:MATRICULA, NOME = :NOME, ENDERECO = :ENDERECO, EMAIL = :EMAIL, DATA_NASCIMENTO = :DATA_NASCIMENTO,"
+                  "CPF = :CPF, TELEFONE = :TELEFONE, IMAGEM = :IMAGEM "
+                  "WHERE ID_ALUNO = :ID_ALUNO");
+    query.bindValue(":MATRICULA", aluno.matricula);
+    query.bindValue(":NOME", aluno.nome);
+    query.bindValue(":ENDERECO", aluno.endereco);
+    query.bindValue(":EMAIL", aluno.email);
+    query.bindValue(":DATA_NASCIMENTO", aluno.data_nascimento);
+    query.bindValue(":CPF", aluno.cpf);
+    query.bindValue(":TELEFONE", aluno.telefone);
+    query.bindValue(":IMAGEM", aluno.imagem);
+    query.bindValue(":ID_ALUNO", aluno.id);
+
+    if(query.exec())
+    {
+        success = true;
+        qDebug() << "deu certo atualizar";
+    }
+    else
+    {
+        qDebug() << "deu errado atualizar";
     }
 
     return success;

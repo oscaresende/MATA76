@@ -212,7 +212,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Matricula</string>
+      <string>Código</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_4">
@@ -321,6 +321,7 @@
     </property>
     <addaction name="actionNovo_aluno"/>
     <addaction name="actionRemover_Aluno"/>
+    <addaction name="actionAtualizar"/>
    </widget>
    <widget class="QMenu" name="menuTreinos">
     <property name="title">
@@ -390,6 +391,11 @@
   <action name="actionRemover_Aluno">
    <property name="text">
     <string>Remover Aluno</string>
+   </property>
+  </action>
+  <action name="actionAtualizar">
+   <property name="text">
+    <string>Atualizar </string>
    </property>
   </action>
  </widget>

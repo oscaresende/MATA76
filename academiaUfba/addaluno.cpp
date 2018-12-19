@@ -6,13 +6,14 @@
 #include "QFileDialog"
 
 
-AddAluno::AddAluno(QWidget *parent, Aluno *aluno) :
+AddAluno::AddAluno(QWidget *parent, Aluno *aluno, const QString& operacao) :
     QWidget(parent),
     ui(new Ui::AddAluno)
 {
     ui->setupUi(this);
 
     db = new DbManager("fitnessUfba");
+    op = operacao;
 
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
     connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
@@ -27,7 +28,11 @@ AddAluno::AddAluno(QWidget *parent, Aluno *aluno) :
         ui->lineEdit_5->setText(aluno->email);
         ui->lineEdit_6->setText(aluno->cpf);
         ui->dateEdit->setDateTime(aluno->data_nascimento);
-        ui->pushButton_2->setEnabled(false);
+
+        if (op != "ATUALIZAR")
+        {
+            ui->pushButton_2->setEnabled(false);
+        }
 
         imageFile.load(aluno->imagem);
         ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
@@ -59,7 +64,7 @@ void AddAluno::cadastrar()
     {        
         Aluno Pesquisa = db->busca_aluno(ui->lineEdit_7->text());
 
-        if(Pesquisa.matricula!=""){
+        if((Pesquisa.matricula!="") && (op == "INCLUIR")){
             mensagem.setText("Matricula existente!");
             mensagem.exec();
         }
@@ -69,17 +74,36 @@ void AddAluno::cadastrar()
             Aluno *novo = new Aluno(ui->lineEdit_7->text(),ui->lineEdit->text(),ui->lineEdit_2->text(), ui->lineEdit_5->text(),
                                     ui->dateEdit->dateTime(), ui->lineEdit_6->text(), ui->lineEdit_3->text(), this->imagePath);
 
-            if(db->addAluno(*novo))
+            if (op == "INCLUIR")
             {
-                mensagem.setText("Aluno cadastrado com sucesso!");
-                mensagem.exec();
-                emit recarrega();
-                this->close();
+                if(db->addAluno(*novo))
+                {
+                    mensagem.setText("Aluno cadastrado com sucesso!");
+                    mensagem.exec();
+                    emit recarrega();
+                    this->close();
+                }
+                else
+                {
+                    mensagem.setText("Inclusão não realizada.");
+                    mensagem.exec();
+                }
             }
             else
             {
-                mensagem.setText("Inclusão não realizada.");
-                mensagem.exec();
+                if(db->atualizarAluno(*novo))
+                {
+                    mensagem.setText("Aluno atualizado com sucesso!");
+                    mensagem.exec();
+                    emit recarrega();
+                    this->close();
+                }
+                else
+                {
+                    mensagem.setText("Atualização não realizada.");
+                    mensagem.exec();
+                }
+
             }
         }
 

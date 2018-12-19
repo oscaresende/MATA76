@@ -235,9 +235,12 @@ Makefile: academiaUfba.pro ../../../Qt/5.11.1/mingw53_32/mkspecs/win32-g++/qmake
 		../../../Qt/5.11.1/mingw53_32/mkspecs/features/lex.prf \
 		academiaUfba.pro \
 		../../../Qt/5.11.1/mingw53_32/lib/qtmaind.prl \
+		../../../Qt/5.11.1/mingw53_32/lib/Qt5MultimediaWidgets.prl \
+		../../../Qt/5.11.1/mingw53_32/lib/Qt5Multimedia.prl \
 		../../../Qt/5.11.1/mingw53_32/lib/Qt5Widgets.prl \
 		../../../Qt/5.11.1/mingw53_32/lib/Qt5Gui.prl \
 		../../../Qt/5.11.1/mingw53_32/lib/Qt5Sql.prl \
+		../../../Qt/5.11.1/mingw53_32/lib/Qt5Network.prl \
 		../../../Qt/5.11.1/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile academiaUfba.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../Qt/5.11.1/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -414,9 +417,12 @@ Makefile: academiaUfba.pro ../../../Qt/5.11.1/mingw53_32/mkspecs/win32-g++/qmake
 ../../../Qt/5.11.1/mingw53_32/mkspecs/features/lex.prf:
 academiaUfba.pro:
 ../../../Qt/5.11.1/mingw53_32/lib/qtmaind.prl:
+../../../Qt/5.11.1/mingw53_32/lib/Qt5MultimediaWidgets.prl:
+../../../Qt/5.11.1/mingw53_32/lib/Qt5Multimedia.prl:
 ../../../Qt/5.11.1/mingw53_32/lib/Qt5Widgets.prl:
 ../../../Qt/5.11.1/mingw53_32/lib/Qt5Gui.prl:
 ../../../Qt/5.11.1/mingw53_32/lib/Qt5Sql.prl:
+../../../Qt/5.11.1/mingw53_32/lib/Qt5Network.prl:
 ../../../Qt/5.11.1/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile academiaUfba.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

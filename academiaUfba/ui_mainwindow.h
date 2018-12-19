@@ -38,6 +38,7 @@ public:
     QAction *actionRemover_Exerc_cio;
     QAction *actionRemover_Professor;
     QAction *actionRemover_Aluno;
+    QAction *actionAtualizar;
     QWidget *centralWidget;
     QGroupBox *groupBox;
     QLineEdit *lineEdit;
@@ -94,6 +95,8 @@ public:
         actionRemover_Professor->setObjectName(QStringLiteral("actionRemover_Professor"));
         actionRemover_Aluno = new QAction(MainWindow);
         actionRemover_Aluno->setObjectName(QStringLiteral("actionRemover_Aluno"));
+        actionAtualizar = new QAction(MainWindow);
+        actionAtualizar->setObjectName(QStringLiteral("actionAtualizar"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         groupBox = new QGroupBox(centralWidget);
@@ -177,6 +180,7 @@ public:
         menuBar->addAction(menuTreinos->menuAction());
         menuCadastro->addAction(actionNovo_aluno);
         menuCadastro->addAction(actionRemover_Aluno);
+        menuCadastro->addAction(actionAtualizar);
         menuTreinos->addAction(actionNovo_Treino);
         menuConfigura_es->addAction(actionNovo_Exerc_cio);
         menuConfigura_es->addAction(actionRemover_Exerc_cio);
@@ -199,6 +203,7 @@ public:
         actionRemover_Exerc_cio->setText(QApplication::translate("MainWindow", "Remover Exerc\303\255cio", nullptr));
         actionRemover_Professor->setText(QApplication::translate("MainWindow", "Remover Professor", nullptr));
         actionRemover_Aluno->setText(QApplication::translate("MainWindow", "Remover Aluno", nullptr));
+        actionAtualizar->setText(QApplication::translate("MainWindow", "Atualizar ", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Pesquisar Aluno", nullptr));
         label->setText(QApplication::translate("MainWindow", "Matricula", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "OK", nullptr));
@@ -206,7 +211,7 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "Matricula", nullptr));
         pushButton_3->setText(QApplication::translate("MainWindow", "OK", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Pesquisar Exerc\303\255cio", nullptr));
-        label_3->setText(QApplication::translate("MainWindow", "Matricula", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "C\303\263digo", nullptr));
         pushButton_4->setText(QApplication::translate("MainWindow", "OK", nullptr));
         label_5->setText(QString());
         pushButton->setText(QApplication::translate("MainWindow", "Login", nullptr));

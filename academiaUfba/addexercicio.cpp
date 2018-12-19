@@ -11,10 +11,16 @@ addexercicio::addexercicio(QWidget *parent, exercicio *exercicio) :
 {
     ui->setupUi(this);
     db = new DbManager("fitnessUfba");
+    moviePlayer = new QMovie();
+    imagePath = "";
 
     connect(ui->pushButton_2, SIGNAL(clicked()),this, SLOT(cadastrar()));
-    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));
-    connect(ui->toolButton, SIGNAL(clicked()),this, SLOT(escolher_arquivo()));
+    connect(ui->pushButton, SIGNAL(clicked()),this, SLOT(cancelar()));    
+    connect(ui->open_pushButton, SIGNAL(clicked(bool)), this, SLOT(openMovie()));
+    connect(ui->play_pushButton, SIGNAL(clicked(bool)), this, SLOT(play()));
+    connect(ui->pause_pushButton, SIGNAL(clicked(bool)), this, SLOT(pause()));
+    connect(moviePlayer, SIGNAL(frameChanged(int)), this, SLOT(changeSliderNumber()));
+    connect(this, SIGNAL(pathChanged()), msg, SLOT(exec()));
 
     if (exercicio != NULL)
     {
@@ -22,11 +28,15 @@ addexercicio::addexercicio(QWidget *parent, exercicio *exercicio) :
         ui->lineEdit->setText(exercicio->nome);
         ui->lineEdit_2->setText(exercicio->descricao);
         ui->pushButton_2->setEnabled(false);
+        imagePath = exercicio->imagem;
 
-        imageFile.load(exercicio->imagem);
-        ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
-                                                                        ui->image_label->height(),
-                                                                        Qt::KeepAspectRatioByExpanding));
+        if (imagePath != "")
+        {
+            moviePlayer->stop();
+            ui->movie_label->setMovie(moviePlayer);
+            moviePlayer->setFileName(imagePath);
+            moviePlayer->start();
+        }
     }
 }
 
@@ -67,19 +77,43 @@ void addexercicio::cadastrar()
     }
 }
 
-void addexercicio::escolher_arquivo()
+void addexercicio::openMovie()
 {
-    this->imagePath = QFileDialog::getOpenFileName(this, "Open", "/home",
-                                                     "*.png *.jpg *.jpeg");
-    if (this->imagePath!= "") imageFile.load(this->imagePath);
-    ui->image_label->setPixmap(QPixmap::fromImage(imageFile).scaled(ui->image_label->width(),
-                                                                    ui->image_label->height(),
-                                                                    Qt::KeepAspectRatioByExpanding));
+    QString moviePath = QFileDialog::getOpenFileName(this, tr("Open a Movie"),
+                                                     "/gifs/");
+    if (moviePath != imagePath)
+    {
+        imagePath = moviePath;
+        emit pathChanged();
+    }
+
+    moviePlayer->stop();
+    ui->movie_label->setMovie(moviePlayer);
+    moviePlayer->setFileName(moviePath);
+    moviePlayer->start();
+}
+
+void addexercicio::changeSliderNumber()
+{
+    ui->frameSlider->setMaximum(moviePlayer->frameCount() - 1);
+    ui->frameSlider->setValue(moviePlayer->currentFrameNumber());
+}
+
+void addexercicio::play()
+{
+    moviePlayer->setPaused(false);
+}
+
+void addexercicio::pause()
+{
+    moviePlayer->setPaused(true);
 }
 
 void addexercicio::cancelar()
 {
     this->close();
 }
+
+
 
 
