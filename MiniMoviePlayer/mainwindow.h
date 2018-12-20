@@ -8,6 +8,8 @@
 #include <QMediaPlaylist>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QDebug>
+
 
 namespace Ui {
 class MainWindow;
@@ -24,13 +26,17 @@ public:
 
 public slots:
     void openMovie();
-    void changeSliderNumber ();
-    void play();
+    void changeSliderNumber();
+    void Play();
     void Pause();
+    void setarPaused();
+    void setarPlayed();
 
 signals:
     void pathChanged();
-    void deuPlay();
+    void deu_play();
+    void deu_pause();
+    void pausou_de_novo();
 
 private:
     Ui::MainWindow *ui;
@@ -38,6 +44,8 @@ private:
     QMediaPlayer *mediaPlayer;
     QMediaPlaylist *playList;
     QMessageBox *msg;
+    bool paused;
+    int frameAtual;
 };
 
 #endif // MAINWINDOW_H
